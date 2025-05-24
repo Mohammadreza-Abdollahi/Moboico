@@ -1,10 +1,11 @@
-'use client'
+"use client";
 import { useMobileMenu } from "@/context/mobileMenuContext";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const menuItems = [
   { id: 1, title: "خانه", path: "/" },
@@ -16,6 +17,7 @@ const menuItems = [
 
 const Header = () => {
   const { toggleMenu } = useMobileMenu();
+  const [searchOpen , setSearchOpen] = useState(false);
   return (
     <>
       <nav className="py-3 shadow-md shadow-pal1">
@@ -50,17 +52,39 @@ const Header = () => {
             </ul>
           </section>
           <section className="px-3 py-1.5 flex lg:flex-2/5">
-            <div className="flex-1 lg:hidden text-2xl cursor-pointer" onClick={toggleMenu}>
+            <div
+              className="flex-1 lg:hidden text-2xl cursor-pointer"
+              onClick={toggleMenu}
+            >
               <FontAwesomeIcon
                 icon={faBars}
                 className="text-pal1-600 hover:text-pal4-600 w-12 px-3 py-1 transition-all duration-150"
               />
             </div>
             <div className="flex-1 flex justify-end lg:gap-6 text-2xl">
-              <FontAwesomeIcon
-                icon={faSearch}
-                className="text-pal1-600 hover:text-pal4-600 px-3 py-1 transition-all duration-150"
-              />
+              <div className="hidden lg:block relative group">
+                <FontAwesomeIcon
+                  icon={searchOpen ? faXmark : faSearch}
+                  onClick={()=>setSearchOpen(prev=>!prev)}
+                  className="text-pal1-600 hover:text-pal4-600 px-3 py-1 transition-all duration-150 cursor-pointer"
+                />
+                <section className={`w-80 px-2 mt-5 group absolute -top-1/2 -right-full transition-all duration-150 ${searchOpen ? "translate-x-10/12 opacity-100 visible" : "invisible opacity-0 translate-x-5/12"}`}>
+                  <div className="group w-full flex border border-black/5 group-focus-within:border-pal1-400 rounded-md overflow-hidden">
+                    <input
+                      type="text"
+                      className="py-1 px-1 w-3/4 text-base text-slate-700 focus:outline-none"
+                      placeholder="جستجو کنید..."
+                      onBlur={()=>setSearchOpen(false)}
+                    />
+                    <button className="py-2 flex w-1/4 bg-pal1-400 hover:bg-pal3-500 items-center justify-center transition-all duration-150">
+                      <FontAwesomeIcon
+                        icon={faSearch}
+                        className="text-xl text-white"
+                      />
+                    </button>
+                  </div>
+                </section>
+              </div>
               <FontAwesomeIcon
                 icon={faUser}
                 className="text-pal1-600 hover:text-pal4-600 drop-shadow px-3 py-1 transition-all duration-150"
