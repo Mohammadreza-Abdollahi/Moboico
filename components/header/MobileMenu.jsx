@@ -4,6 +4,7 @@ import { faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const menuItems = [
   { id: 1, title: "خانه", path: "/" },
@@ -15,6 +16,9 @@ const menuItems = [
 
 const MobileMenu = () => {
   const { isOpen, closeMenu } = useMobileMenu();
+  useEffect(()=>{
+    closeMenu()
+  },[])
   return (
     <>
       <section
@@ -52,6 +56,7 @@ const MobileMenu = () => {
             <ul className="flex flex-col items-start gap-4 text-lg">
               {menuItems.map((item) => (
                 <li
+                  onClick={closeMenu}
                   key={item.id}
                   className="text-slate-700 hover:text-pal1-600 px-3 pb-2 w-full border-b-2 border-black/5 hover:-translate-x-2 cursor-pointer transition-all duration-150"
                 >

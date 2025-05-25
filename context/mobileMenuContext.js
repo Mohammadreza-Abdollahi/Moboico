@@ -10,7 +10,7 @@ export const MobileMenuProvider = ({ children }) => {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
-
+  console.log(isOpen);
   return (
     <MobileMenuContext.Provider value={{ isOpen, toggleMenu, closeMenu }}>
       {children}
