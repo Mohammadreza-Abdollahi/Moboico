@@ -24,15 +24,21 @@ const Header = () => {
         <section className="lg:mx-auto lg:container lg:flex">
           <section className="flex justify-center lg:justify-start lg:items-center lg:flex-1/5">
             <Link href="/">
-              <div className=" flex items-center">
+              {/* <div className=" flex items-center">
                 <Image
                   src={"/logo/logo.png"}
                   alt="Logo"
-                  width={60}
-                  height={60}
+                  width={80}
+                  height={80}
                 />
-                <h1 className="text-pal1-600 pb-1.5">موبویکو</h1>
-              </div>
+                <h1 className="text-pal1-600 pb-1.5 text-xl">موبویکو</h1>
+              </div> */}
+              <Image
+                src={"/logo/moboico.png"}
+                alt="Logo"
+                width={160}
+                height={80}
+              />
             </Link>
           </section>
           <section className="hidden lg:block lg:my-auto lg:flex-2/5 lg:items-center">
@@ -51,7 +57,7 @@ const Header = () => {
               ))}
             </ul>
           </section>
-          <section className="px-3 py-1.5 flex lg:flex-2/5">
+          <section className="px-3 py-1.5 flex lg:flex-2/5 items-center">
             <div
               className="flex-1 lg:hidden text-2xl cursor-pointer"
               onClick={toggleMenu}

@@ -16,9 +16,9 @@ const menuItems = [
 
 const MobileMenu = () => {
   const { isOpen, closeMenu } = useMobileMenu();
-  useEffect(()=>{
-    closeMenu()
-  },[])
+  useEffect(() => {
+    closeMenu();
+  }, []);
   return (
     <>
       <section
@@ -33,7 +33,7 @@ const MobileMenu = () => {
         >
           <section className="flex justify-center">
             <Link href="/">
-              <div className=" flex items-center">
+              {/* <div className=" flex items-center">
                 <Image
                   src={"/logo/logo.png"}
                   alt="Logo"
@@ -41,14 +41,27 @@ const MobileMenu = () => {
                   height={60}
                 />
                 <h1 className="text-pal1-600 pb-1.5">موبویکو</h1>
-              </div>
+              </div> */}
+              <Image
+                src={"/logo/moboico.png"}
+                alt="Logo"
+                width={160}
+                height={80}
+              />
             </Link>
           </section>
           <section className="px-2 mt-5 group">
             <div className="group w-full flex border border-black/5 group-focus-within:border-pal1-400 rounded-md overflow-hidden">
-              <input type="text" className="py-2 px-1 w-3/4 text-slate-700 focus:outline-none" placeholder="جستجو کنید..."/>
+              <input
+                type="text"
+                className="py-2 px-1 w-3/4 text-slate-700 focus:outline-none"
+                placeholder="جستجو کنید..."
+              />
               <button className="py-2 flex w-1/4 bg-pal1-400 items-center justify-center">
-                <FontAwesomeIcon icon={faSearch} className="text-xl text-white"/>
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="text-xl text-white"
+                />
               </button>
             </div>
           </section>
