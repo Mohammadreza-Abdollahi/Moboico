@@ -34,3 +34,10 @@
 *{
   font-family: yekan;
 }
+/* Sliders */
+.landing-head-slider .swiper-pagination-bullet{
+  width: 18px;
+  height: 18px;
+  margin-top: -10px;
+  background-color: #2fe1d8;
+}

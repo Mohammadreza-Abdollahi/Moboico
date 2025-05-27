@@ -1,8 +1,10 @@
 import Header from "@/components/header/Header";
-import "./globals.css";
 import { MobileMenuProvider } from "@/context/mobileMenuContext";
 import Head from "./head";
 import MobileMenu from "@/components/header/MobileMenu";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import "./globals.css";
 
 export const metadata = {
   title: "موبویکو",
