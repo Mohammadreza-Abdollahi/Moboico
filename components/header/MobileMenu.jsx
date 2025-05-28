@@ -1,18 +1,11 @@
 "use client";
 import { useMobileMenu } from "@/context/mobileMenuContext";
+import { menuItems } from "@/mocks/headerData";
 import { faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-
-const menuItems = [
-  { id: 1, title: "خانه", path: "/" },
-  { id: 2, title: "فروشگاه", path: "/shop" },
-  { id: 3, title: "وبلاگ", path: "/blog" },
-  { id: 4, title: "درباره ما", path: "/about-us" },
-  { id: 5, title: "تماس با ما", path: "/contact-us" },
-];
 
 const MobileMenu = () => {
   const { isOpen, closeMenu } = useMobileMenu();

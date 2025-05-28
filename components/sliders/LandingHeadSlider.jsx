@@ -1,57 +1,37 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination , Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SliderItem from "./SliderItem";
+import { slides } from "@/mocks/sliderData";
 
 const LandingHeadSlider = () => {
   return (
     <>
       <Swiper
+        navigation={true}
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination , Autoplay]}
+        modules={[Navigation, Pagination, Autoplay]}
         loop={true}
         autoplay={{
-            delay: 3500,
+          delay: 3500,
         }}
         className="landing-head-slider"
       >
-        <SwiperSlide>
-          <SliderItem
-            img={"/slides/slide-4.png"}
-            alt={"Slide-4"}
-            head="مهندسی پزشکی؛ پیوند علم و زندگی در آمار و آینده"
-            text="در دهه گذشته، صنعت مهندسی پزشکی با رشدی فراتر از پیش‌بینی‌ها، به یکی از سریع‌ترین حوزه‌های فناوری‌های سلامت تبدیل شده است.
-بر اساس آمار جهانی، بازار تجهیزات پزشکی تا سال 2030 به بیش از 800 میلیارد دلار خواهد رسید ؛ عددی که نشان‌دهنده عطش بی‌سابقه جهان برای نوآوری در مراقبت‌های پزشکی است.
-
-تنها در سال 2024، بیش از 40 میلیارد دلار سرمایه‌گذاری در حوزه تکنولوژی‌های نوین پزشکی انجام شده، از جمله ابزارهای پوشیدنی هوشمند، ایمپلنت‌های زیستی، و ربات‌های جراحی با دقت بالا."
-            text2="در کنار این رشد مالی، بیش از 2.5 میلیون نفر در جهان در حوزه مهندسی پزشکی مشغول به فعالیت‌اند، و سهم این رشته از پژوهش‌های بین‌رشته‌ای به شکل تصاعدی در حال افزایش است.
-
-آینده‌ای که پیش روی ماست، تنها پیشرفت در تکنولوژی نیست ؛ بلکه بازتعریف ارتباط انسان با درمان و سلامت است."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SliderItem
-            img={"/slides/slide-2.png"}
-            alt={"Slide-2"}
-            head="آغاز راهی نو، با نیروی اندیشه‌های بزرگ"
-            text="در جهانی که سرعت تغییر از هر زمان دیگری بیشتر شده، آن‌چه ما را متمایز می‌کند، تنها دانش یا تجربه نیست ؛ بلکه جسارت در اندیشیدن متفاوت است.
-
-اینجا، در آغاز این مسیر تازه، ما نه فقط یک مجموعه یا نام تازه بنیان می‌گذاریم؛ بلکه چشم‌اندازی نو برای آینده‌ای می‌سازیم که در آن، نوآوری ستون اصلی پیشرفت است."
-            text2="ما باور داریم هر چالش، فرصتی است برای خلق؛ هر محدودیت، بستری برای ابداع؛ و هر ایده جسورانه، بذر تحولی بزرگ.
-
-امروز، در آغاز این مسیر، با ذهنی باز، نگاهی رو به آینده و تکیه بر قدرت تفکر خلاق، قدم در راهی گذاشته‌ایم که تنها مقصدش پیشرفت نیست ؛ بلکه ساختن جهانی بهتر است."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SliderItem
-            img={"/slides/slide-1.png"}
-            alt={"Slide-1"}
-            head="وقتی علم و تخیل دست در دست هم دهند"
-            head2="آینده‌ای روشن و متفاوت ساخته می‌شود"
-          />
-        </SwiperSlide>
+        {slides.map((item) => (
+          <SwiperSlide>
+            <SliderItem
+              img={item.image}
+              alt={item.alt}
+              head={item.head}
+              head2={item.head2}
+              text={item.text}
+              text2={item.text2}
+              key={item.id}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

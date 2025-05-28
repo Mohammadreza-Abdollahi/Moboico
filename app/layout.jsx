@@ -4,6 +4,7 @@ import Head from "./head";
 import MobileMenu from "@/components/header/MobileMenu";
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import "./globals.css";
 
 export const metadata = {

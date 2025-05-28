@@ -25,6 +25,7 @@
   --color-pal4-600: #9755c8;
   --color-pal4-700: #8242ae;
   --color-pal4-800: #6e3a8f;
+  --color-back-gray: #f7f7f8;
 }
 /* Fonts */
 @font-face {
@@ -40,4 +41,10 @@
   height: 18px;
   margin-top: -10px;
   background-color: #2fe1d8;
+}
+.landing-head-slider .swiper-button-prev,
+.landing-head-slider .swiper-button-next{
+  width: 18px;
+  height: 18px;
+  color: #2fe1d8;
 }

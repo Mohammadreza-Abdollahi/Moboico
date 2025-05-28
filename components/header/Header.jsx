@@ -1,19 +1,12 @@
 "use client";
 import { useMobileMenu } from "@/context/mobileMenuContext";
+import { menuItems } from "@/mocks/headerData";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-const menuItems = [
-  { id: 1, title: "خانه", path: "/" },
-  { id: 2, title: "فروشگاه", path: "/shop" },
-  { id: 3, title: "وبلاگ", path: "/blog" },
-  { id: 4, title: "درباره ما", path: "/about-us" },
-  { id: 5, title: "تماس با ما", path: "/contact-us" },
-];
 
 const Header = () => {
   const { toggleMenu } = useMobileMenu();
@@ -81,10 +74,10 @@ const Header = () => {
                       : "invisible opacity-0 translate-x-5/12"
                   }`}
                 >
-                  <div className="group w-full flex border border-black/5 group-focus-within:border-pal1-400 rounded-md overflow-hidden">
+                  <div className="group w-full flex border border-black/5 group-focus-within:border-pal1-400 rounded-full overflow-hidden">
                     <input
                       type="text"
-                      className="py-1 px-1 w-3/4 text-base text-slate-700 focus:outline-none"
+                      className="py-1 px-1.5 w-3/4 text-base text-slate-700 focus:outline-none"
                       placeholder="جستجو کنید..."
                       onBlur={() => setSearchOpen(false)}
                     />
