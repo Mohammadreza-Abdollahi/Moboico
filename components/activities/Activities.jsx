@@ -4,7 +4,7 @@ import { faBrain, faChartColumn, faScrewdriverWrench } from "@fortawesome/free-s
 const Activities = () => {
   return (
     <>
-      <section className="bg-back-gray w-full py-14">
+      <section className="bg-back-gray w-full py-16">
         <div className="container mx-auto">
           <section className="text-center">
             <span className="text-3xl text-slate-800">

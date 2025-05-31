@@ -48,3 +48,25 @@
   height: 18px;
   color: #2fe1d8;
 }
+.landing-head-slider .swiper-button-prev:hover,
+.landing-head-slider .swiper-button-next:hover{
+  width: 18px;
+  height: 18px;
+  color: #8242ae;
+  transition: all .2s ease;
+}
+.products-slider{
+  padding: 0px 33px;
+}
+.products-slider .swiper-initialized{
+  padding: 20px 0px;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+.products-slider .swiper-button-prev,
+.products-slider .swiper-button-next{
+  width: 18px;
+  height: 18px;
+  color: #8242ae;
+}
