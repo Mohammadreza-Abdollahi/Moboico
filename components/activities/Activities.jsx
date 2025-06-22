@@ -18,7 +18,7 @@ const Activities = () => {
               کارآمد و خدمات قابل‌اعتماد، نیازهای متنوع بازار را پاسخ دهد.
             </p>
           </section>
-          <section className="mt-12 lg:px-24 flex flex-col items-center lg:justify-center lg:items-stretch lg:flex-row gap-12">
+          <section className="mt-12 lg:px-24 flex flex-col items-center lg:justify-center lg:items-stretch lg:flex-row gap-8">
             <ActivityItem
               icon={faScrewdriverWrench}
               title={"تعمیرات"}

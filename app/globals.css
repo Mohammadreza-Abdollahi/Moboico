@@ -69,4 +69,8 @@
   width: 18px;
   height: 18px;
   color: #8242ae;
+  background-color: #8342ae44;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }

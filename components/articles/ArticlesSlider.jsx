@@ -1,19 +1,17 @@
-"use client";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import ProductSliderItem from "./ProductSliderItem";
-import { productsData } from "@/mocks/productsData";
+import ProductSliderItem from "./ArticleSliderItem";
+import { articlesData } from "@/mocks/articlesData";
 
-const ProductsSlider = () => {
+const ArticlesSlider = () => {
   return (
     <>
       <Swiper
         loop={true}
-        navigation={true}
         slidesPerView={1}
-        spaceBetween={10}
+        spaceBetween={12}
         autoplay={{
-            delay: 3000,
+            delay: 10000,
         }}
         breakpoints={{
           640: {
@@ -29,19 +27,17 @@ const ProductsSlider = () => {
             spaceBetween: 35,
           },
         }}
-        modules={[Navigation , Autoplay]}
-        className="products-slider"
+        modules={[Autoplay]}
+        className="articles-slider"
       >
-        {productsData.map((item) => (
+        {articlesData.map((item) => (
           <SwiperSlide className="text-center">
             <ProductSliderItem
               id={item.id}
               img={item.img}
               alt={item.alt_Img}
               title={item.title}
-              price={item.price}
-              discount={item.discount}
-              count={item.count}
+              date={item.date}
               key={item.id}
             />
           </SwiperSlide>
@@ -51,4 +47,4 @@ const ProductsSlider = () => {
   );
 };
 
-export default ProductsSlider;
+export default ArticlesSlider;

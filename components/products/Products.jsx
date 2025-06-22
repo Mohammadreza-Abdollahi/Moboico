@@ -8,7 +8,7 @@ const Products = () => {
     <>
       <section className="py-22 px-2">
         <div className="container mx-auto bg-pal1-400 px-2 lg:px-8 py-8 rounded-xl shadow-lg">
-          <section className="flex items-center justify-center">
+          <section className="flex items-center justify-center mx-auto">
             <div className="flex-6/12 md:flex-4/12 lg:flex-2/12 text-center px-2 text-base lg:text-xl text-white">
               <span className="">جدیدترین محصولات</span>
             </div>

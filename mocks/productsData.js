@@ -5,7 +5,8 @@ export const productsData = [
         img: "/products/laptop.png",
         alt_Img: "ProductImage",
         price: 47590000,
-        discount: 8
+        discount: 8,
+        count: 20
     },
     {
         id: 2,
@@ -13,7 +14,8 @@ export const productsData = [
         img: "/products/watch.png",
         alt_Img: "ProductImage",
         price: 6000000,
-        discount: 68
+        discount: 68,
+        count: 3
     },
     {
         id: 3,
@@ -21,7 +23,8 @@ export const productsData = [
         img: "/products/watch2.png",
         alt_Img: "ProductImage",
         price: 9800000,
-        discount: 50
+        discount: 0,
+        count: 2
     },
     {
         id: 4,
@@ -29,7 +32,8 @@ export const productsData = [
         img: "/products/airpod.png",
         alt_Img: "ProductImage",
         price: 1180000,
-        discount: 24
+        discount: 24,
+        count: 12
     },
     {
         id: 5,
@@ -37,6 +41,7 @@ export const productsData = [
         img: "/products/macbook.png",
         alt_Img: "ProductImage",
         price: 116000000,
-        discount: 2
+        discount: 2,
+        count: 0
     },
 ]

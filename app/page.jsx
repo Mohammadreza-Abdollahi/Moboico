@@ -1,4 +1,6 @@
+'use client'
 import Activities from "@/components/activities/Activities";
+import Articles from "@/components/articles/Articles";
 import Products from "@/components/products/Products";
 import LandingHeadSlider from "@/components/sliders/LandingHeadSlider";
 
@@ -8,6 +10,7 @@ export default function Home() {
       <LandingHeadSlider/>
       <Activities/>
       <Products/>
+      <Articles/>
       <h1 className="text-5xl mt-10">سلام دنیا</h1>
     </div>
   );
