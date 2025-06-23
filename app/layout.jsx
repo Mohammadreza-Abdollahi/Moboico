@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import "./globals.css";
+import Footer from "@/components/footer/Footer";
 
 export const metadata = {
   title: "موبویکو",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <Header />
           <MobileMenu/>
           {children}
+          <Footer/>
         </MobileMenuProvider>
       </body>
     </html>

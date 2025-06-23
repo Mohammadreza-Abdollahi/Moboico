@@ -6,8 +6,8 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 const Articles = () => {
   return (
     <>
-      <section className="container mx-auto mt-16">
-        <section className="flex items-center justify-center mx-auto mb-10">
+      <section className="container mx-auto mb-10 mt-12 md:mt-10 lg:mt-24">
+        <section className="flex items-center justify-center mx-auto mb-4 md:mb-10">
           <div className="flex-6/12 md:flex-4/12 lg:flex-2/12 text-center px-2 text-base lg:text-xl text-pal3-700">
             <span className="">آخرین مقالات</span>
           </div>

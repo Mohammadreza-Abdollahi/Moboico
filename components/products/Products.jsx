@@ -6,11 +6,11 @@ import ProductsSlider from "./ProductsSlider";
 const Products = () => {
   return (
     <>
-      <section className="py-22 px-2">
+      <section className="py-5 md:py-10 lg:py-22 px-2">
         <div className="container mx-auto bg-pal1-400 px-2 lg:px-8 py-8 rounded-xl shadow-lg">
           <section className="flex items-center justify-center mx-auto">
             <div className="flex-6/12 md:flex-4/12 lg:flex-2/12 text-center px-2 text-base lg:text-xl text-white">
-              <span className="">جدیدترین محصولات</span>
+              <span>جدیدترین محصولات</span>
             </div>
             <hr className="flex-2/12 md:flex-8/12 lg:flex-9/12 text-center text-white" />
             <div className="flex-5/12 md:flex-3/12 lg:flex-2/12 text-center text-sm mx-2">
@@ -23,7 +23,7 @@ const Products = () => {
               </button>
             </div>
           </section>
-          <section className="mt-10">
+          <section className="pt-5 md:mt-10">
             <ProductsSlider/>
           </section>
         </div>

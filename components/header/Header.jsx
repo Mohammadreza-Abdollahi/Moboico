@@ -26,14 +26,14 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`w-full py-3 border-b-2 border-pal1-300 bg-white z-50 transition-all duration-500 ${
+        className={`w-full rounded-full md:rounded-none py-3 border-b-2 border-pal1-300 bg-white z-50 transition-all duration-500 ${
           fixedTop
-            ? "fixed top-0 left-0 translate-y-0 shadow-md"
+            ? "fixed top-1 md:top-0 left-0 translate-y-0 shadow-md"
             : "fixed top-0 left-0 -translate-y-full pointer-events-none transition-all duration-500"
         }`}
       >
         <section className="lg:mx-auto lg:container lg:flex">
-          <section className="flex justify-center lg:justify-start lg:items-center lg:flex-1/5">
+          <section className="hidden md:flex justify-center lg:justify-start lg:items-center lg:flex-1/5">
             <Link href="/">
               {/* <div className=" flex items-center">
                 <Image
