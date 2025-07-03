@@ -1,10 +1,15 @@
+'use client'
 import ArticleItem from "@/components/articles/ArticleItem";
-import { articlesData } from "@/mocks/articlesData";
-import { convertToPerisan } from "@/utilities/moment";
-import Image from "next/image";
-import Link from "next/link";
+import Loading from "@/components/loading";
+import { useEffect, useState } from "react";
 
 const BlogPage = () => {
+  const [articles , setArticles] = useState([]);
+  useEffect(()=>{
+    fetch("/api/articles")
+    .then(res=>res.json())
+    .then(data=>setArticles(data))
+  },[])
   return (
     <>
       <section className="bg-back-gray pt-8 pb-20">
@@ -27,17 +32,21 @@ const BlogPage = () => {
             </div>
           </section>
           <section className="flex justify-center items-stretch flex-wrap gap-5 mt-10">
-            {articlesData.map((item) => (
-              <ArticleItem 
-                key={item.id}
-                title={item.title}
-                text={item.text}
-                alt={item.alt_Img}
-                date={item.date}
-                id={item.id}
-                src={item.img}
-              />
-            ))}
+            {
+              articles.length !== 0 ? (
+                articles.map((item) => (
+                  <ArticleItem 
+                    key={item.id}
+                    title={item.title}
+                    text={item.text}
+                    alt={item.alt_Img}
+                    date={item.date}
+                    id={item.id}
+                    src={item.img}
+                  />
+                ))
+              ) : <Loading/>
+            }
           </section>
         </section>
       </section>

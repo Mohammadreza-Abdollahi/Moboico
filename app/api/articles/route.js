@@ -1,13 +1,13 @@
 import { connectedToDatabase } from "@/lib/mongodb";
-import Product from "@/models/Product";
+import Article from "@/models/Article";
 import { NextResponse } from "next/server";
 
 export async function GET(){
     try{
         await connectedToDatabase();
-        const products = await Product.find({});
-        return NextResponse.json(products,{ status : 200 })
+        const articles = await Article.find({});
+        return NextResponse.json(articles,{ status : 200 })
     }catch(error){
-        return NextResponse.json({error: "In Receive Products Somthings Wrong...",error},{ status : 500 });
+        return NextResponse.json({error: "In Receive Articles Somthings Wrong...",error},{ status : 500 });
     }
 };
