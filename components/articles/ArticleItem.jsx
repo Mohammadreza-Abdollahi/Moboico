@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ArticleItem = ({
-  id = "",
+  id = 0,
   src = "",
   alt = "",
   title = "",
