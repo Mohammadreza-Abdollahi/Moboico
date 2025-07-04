@@ -2,9 +2,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import SliderItem from "./SliderItem";
-import { slides } from "@/mocks/sliderData";
 
-const LandingHeadSlider = () => {
+const LandingHeadSlider = ({slides = []}) => {
   return (
     <>
       <section>

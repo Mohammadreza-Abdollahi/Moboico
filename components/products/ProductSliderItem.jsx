@@ -1,3 +1,4 @@
+import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -62,7 +63,7 @@ const ProductSliderItem = ({
             count === 0 ? "invisible" : count < 5 ? "visible" : "invisible"
           }`}
         >
-          <span>فقط {count} عدد باقی مانده</span>
+          <span>فقط {convertToPersianDigits(count)} عدد باقی مانده</span>
         </div>
         {count === 0 ? (
           ""

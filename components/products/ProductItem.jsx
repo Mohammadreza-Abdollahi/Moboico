@@ -1,3 +1,4 @@
+import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +15,11 @@ const ProductItem = ({
     <>
       <section className="relative w-80 group bg-back-gray border border-pal1-400 hover:shadow-lg hover:shadow-pal3-600/30 hover:border hover:border-pal3-600 rounded overflow-hidden transition duration-150">
         <Link href={`products/${id}`} className="line-clamp-2">
-          <div className="h-52 relative">
+          <div
+            className={`relative w-full px-5 py-3 overflow-hidden bg-white ${
+              count === 0 ? "grayscale-100" : ""
+            }`}
+          >
             <Image
               className="w-full h-full"
               src={img}
@@ -56,7 +61,7 @@ const ProductItem = ({
             count === 0 ? "invisible" : count < 5 ? "visible" : "invisible"
           }`}
         >
-          <span>فقط {count} عدد باقی مانده</span>
+          <span>فقط {convertToPersianDigits(count)} عدد باقی مانده</span>
         </div>
         {count === 0 ? (
           ""

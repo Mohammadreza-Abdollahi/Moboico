@@ -1,8 +1,6 @@
+import { convertToPersianDate } from "@/utilities/convertToPersianDate";
 import Image from "next/image";
 import Link from "next/link";
-import moment from "moment-jalaali";
-moment.loadPersian({ usePersianDigits: true });
-
 
 const ArticleSliderItem = ({
   id = 1,
@@ -33,7 +31,7 @@ const ArticleSliderItem = ({
           </Link>
         </div>
         <div className="absolute group-hover:-right-full top-3 right-0 py-1 px-5 rounded-l-full text-pal3-700 text-sm bg-white transition-all duration-500">
-          {moment(date).format("jDD  jMMMM  jYYYY")}
+          {convertToPersianDate(date,"jDD  jMMMM  jYYYY")}
         </div>
       </section>
     </>
