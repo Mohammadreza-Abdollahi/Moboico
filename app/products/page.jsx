@@ -16,11 +16,11 @@ const ShopPage = async () => {
       <section className="pt-8 pb-20">
         <section className="container mx-auto">
           <section className="flex justify-between items-center">
-            <div className="flex-4/12 md:flex-4/12 text-center">
+            <div className="flex-4/12 md:flex-2/12 text-center">
               <span className="md:text-2xl text-slate-800">همه محصولات</span>
             </div>
-            <hr className="flex-4/12 md:flex-5/12 text-center text-slate-400"/>
-            <div className="flex-4/12 md:flex-3/12 text-center">
+            <hr className="flex-4/12 md:flex-8/12 text-center text-pal4-600"/>
+            <div className="flex-4/12 md:flex-2/12 text-center">
               <select
                 name="sorting"
                 id="sorting-select"

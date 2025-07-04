@@ -2,9 +2,8 @@
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductSliderItem from "./ProductSliderItem";
-import { productsData } from "@/mocks/productsData";
 
-const ProductsSlider = () => {
+const ProductsSlider = ({products = []}) => {
   return (
     <>
       <Swiper
@@ -32,7 +31,7 @@ const ProductsSlider = () => {
         modules={[Navigation , Autoplay]}
         className="products-slider"
       >
-        {productsData.map((item) => (
+        {products.map((item) => (
           <SwiperSlide className="text-center">
             <ProductSliderItem
               id={item.id}

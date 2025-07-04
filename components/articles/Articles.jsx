@@ -3,7 +3,7 @@ import ArticlesSlider from "./ArticlesSlider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Articles = () => {
+const Articles = ({articles}) => {
   return (
     <>
       <section className="container mx-auto mb-10 mt-12 md:mt-10 lg:mt-24">
@@ -26,7 +26,7 @@ const Articles = () => {
           </div>
         </section>
         <div className="px-3">
-          <ArticlesSlider />
+          <ArticlesSlider articles={articles}/>
         </div>
       </section>
     </>

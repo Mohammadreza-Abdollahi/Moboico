@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import ProductsSlider from "./ProductsSlider";
 
-const Products = () => {
+const Products = ({products}) => {
   return (
     <>
       <section className="py-5 md:py-10 lg:py-22 px-2">
@@ -24,7 +24,7 @@ const Products = () => {
             </div>
           </section>
           <section className="pt-5 md:mt-10">
-            <ProductsSlider/>
+            <ProductsSlider products={products}/>
           </section>
         </div>
       </section>
