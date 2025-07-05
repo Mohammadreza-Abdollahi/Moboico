@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "موبویکو | آموزش",
+};
 const ShopLayout = ({children}) => {
   return <>
     <section>

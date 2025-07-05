@@ -13,7 +13,7 @@ const ArticleItem = ({
   return (
     <>
       <article
-        className="w-80 group bg-white hover:shadow-lg hover:shadow-pal1-400/20 rounded overflow-hidden transition duration-150"
+        className="w-80 group bg-white border border-pal1-400 hover:shadow-lg hover:shadow-pal1-400/20 rounded overflow-hidden transition duration-150"
         key={id}
       >
         <Link href={`blog/${id}`} className="line-clamp-2">

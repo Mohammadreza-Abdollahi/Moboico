@@ -1,5 +1,5 @@
 import ActivityItem from "./AcivityItem";
-import { faBrain, faChartColumn, faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
+import { faBrain, faChartColumn, faClipboardCheck, faGraduationCap, faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
 
 const Activities = () => {
   return (
@@ -27,15 +27,15 @@ const Activities = () => {
               }
             />
             <ActivityItem
-              icon={faBrain}
-              title={"تولید"}
+              icon={faGraduationCap}
+              title={"اموزش"}
               text={
                 "در بخش تولیدات، موبویکو با بهره‌گیری از فناوری‌های پیشرفته و تیمی متخصص، به طراحی و ساخت تجهیزات و محصولات مهندسی می‌پردازد که نه‌تنها کیفیت بالا دارند، بلکه با نیازهای بومی و صنعتی نیز سازگار هستند."
               }
             />
             <ActivityItem
-              icon={faChartColumn}
-              title={"بازاریابی"}
+              icon={faClipboardCheck}
+              title={"نگهداری"}
               text={
                 "در بخش بازاریابی و توسعه‌ی بازار، موبویکو با شناخت دقیق از فضای رقابتی و نیازهای بازار، راهکارهایی هدفمند ارائه می‌دهد تا محصولات و خدمات به درستی به مخاطبان هدف معرفی شوند و جایگاه مناسبی در بازار پیدا کنند."
               }

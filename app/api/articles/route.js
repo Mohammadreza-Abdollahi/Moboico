@@ -1,10 +1,10 @@
-import { connectedToDatabase } from "@/lib/mongodb";
+import { connectToDatabase } from "@/lib/mongodb";
 import Article from "@/models/Article";
 import { NextResponse } from "next/server";
 
 export async function GET(){
     try{
-        await connectedToDatabase();
+        await connectToDatabase();
         const articles = await Article.find({});
         return NextResponse.json(articles,{ status : 200 })
     }catch(error){

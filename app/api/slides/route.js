@@ -1,10 +1,10 @@
-import { connectedToDatabase } from "@/lib/mongodb";
+import { connectToDatabase } from "@/lib/mongodb";
 import Slide from "@/models/Slide";
 import { NextResponse } from "next/server";
 
 export async function GET(){
     try{
-        await connectedToDatabase();
+        await connectToDatabase();
         const slides = await Slide.find({});
         return NextResponse.json(slides,{ status : 200 })
     }catch(error){

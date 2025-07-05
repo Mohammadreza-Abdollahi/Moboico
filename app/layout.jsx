@@ -9,7 +9,7 @@ import "./globals.css";
 import Footer from "@/components/footer/Footer";
 
 export const metadata = {
-  title: "موبویکو",
+  title: "موبویکو | خانه",
   description: "گروه فعال در حوزه مهندسی پزشکی",
 };
 

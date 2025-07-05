@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "موبویکو | وبلاگ",
+};
 const BlogLayout = ({children}) => {
   return <>
     <section>
