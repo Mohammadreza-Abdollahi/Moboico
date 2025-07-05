@@ -19,7 +19,7 @@ const ShopPage = async () => {
             <div className="flex-4/12 md:flex-2/12 text-center">
               <span className="md:text-2xl text-slate-800">همه محصولات</span>
             </div>
-            <hr className="flex-4/12 md:flex-8/12 text-center text-pal4-600"/>
+            <hr className="flex-4/12 md:flex-8/12 text-center text-pal1-400"/>
             <div className="flex-4/12 md:flex-2/12 text-center">
               <select
                 name="sorting"

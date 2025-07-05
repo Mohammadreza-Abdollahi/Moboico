@@ -1,8 +1,8 @@
 const { default: mongoose } = require("mongoose");
 
 const SlideSchema = new mongoose.Schema({
-    id: Number,
-    image: String,
+    id: { type: String, required: true },
+    image: { type: String, required: true },
     alt: String,
     head: String,
     head2: String,

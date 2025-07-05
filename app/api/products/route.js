@@ -8,6 +8,6 @@ export async function GET(){
         const products = await Product.find({});
         return NextResponse.json(products,{ status : 200 })
     }catch(error){
-        return NextResponse.json({error: "In Receive Products Somthings Wrong...",error},{ status : 500 });
+        return NextResponse.json({error: "در دریافت محصولات مشکلی رخ داده است...",error},{ status : 500 });
     }
 };

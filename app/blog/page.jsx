@@ -12,11 +12,11 @@ const BlogPage = async () => {
     <>
       <section className="bg-back-gray pt-8 pb-20">
         <section className="container mx-auto">
-        <section className="flex justify-between items-center">
+          <section className="flex justify-between items-center">
             <div className="flex-4/12 md:flex-2/12 text-center">
               <span className="md:text-2xl text-slate-800">همه مقالات</span>
             </div>
-            <hr className="flex-4/12 md:flex-8/12 text-center text-pal4-600"/>
+            <hr className="flex-4/12 md:flex-8/12 text-center text-pal1-400" />
             <div className="flex-4/12 md:flex-2/12 text-center">
               <select
                 name="sorting"
@@ -27,7 +27,7 @@ const BlogPage = async () => {
                 <option value="most-popular">پربازدیدترین</option>
                 <option value="most-tidy">مرتب ترین</option>
               </select>
-              <FontAwesomeIcon icon={faListUl}/>
+              <FontAwesomeIcon icon={faListUl} />
             </div>
           </section>
           <section className="flex justify-center items-stretch flex-wrap gap-5 mt-10">
@@ -38,7 +38,7 @@ const BlogPage = async () => {
                   title={item.title}
                   text={item.text}
                   alt={item.alt_Img}
-                  date={item.date}
+                  createdAt={item.createdAt}
                   id={item.id}
                   src={item.img}
                 />

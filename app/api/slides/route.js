@@ -8,6 +8,6 @@ export async function GET(){
         const slides = await Slide.find({});
         return NextResponse.json(slides,{ status : 200 })
     }catch(error){
-        return NextResponse.json({error: "In Receive Slides Somthings Wrong...",error},{ status : 500 });
+        return NextResponse.json({error: "در دریافت اسلاید ها مشکلی رخ داده است...",error},{ status : 500 });
     }
 };

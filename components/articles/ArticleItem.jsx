@@ -8,7 +8,7 @@ const ArticleItem = ({
   alt = "",
   title = "",
   text = "",
-  date = "",
+  createdAt = "",
 }) => {
   return (
     <>
@@ -36,7 +36,7 @@ const ArticleItem = ({
           <p className="line-clamp-5">{text}</p>
         </div>
         <div className="border-t text-sm text-slate-600 border-pal1-300 px-2.5 py-3">
-          {convertToPersianDate(date,"jDD  jMMMM  jYYYY")}
+          {convertToPersianDate(createdAt,"jDD  jMMMM  jYYYY")}
         </div>
       </article>
     </>

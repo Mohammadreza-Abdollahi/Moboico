@@ -7,7 +7,7 @@ const ArticleSliderItem = ({
   img = "",
   alt = "",
   title = "",
-  date = ""
+  createdAt = ""
 }) => {
   return (
     <>
@@ -31,7 +31,7 @@ const ArticleSliderItem = ({
           </Link>
         </div>
         <div className="absolute group-hover:-right-full top-3 right-0 py-1 px-5 rounded-l-full text-pal3-700 text-sm bg-white transition-all duration-500">
-          {convertToPersianDate(date,"jDD  jMMMM  jYYYY")}
+          {convertToPersianDate(createdAt,"jDD  jMMMM  jYYYY")}
         </div>
       </section>
     </>

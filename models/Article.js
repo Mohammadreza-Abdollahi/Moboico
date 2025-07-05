@@ -1,11 +1,11 @@
 const { default: mongoose } = require("mongoose");
 
 const ArticleSchema = new mongoose.Schema({
-    id: Number,
-    title: String,
-    img: String,
+    id: { type: String, required: true },
+    title: { type: String, required: true },
+    img: { type: String, default: '' },
     alt_Img: String,
-    date: String
+    createAt: { type: String, required: true }
 });
 
 export default mongoose.models.Article || mongoose.model("Article" , ArticleSchema);

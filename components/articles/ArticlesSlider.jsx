@@ -36,7 +36,7 @@ const ArticlesSlider = ({articles = []}) => {
               img={item.img}
               alt={item.alt_Img}
               title={item.title}
-              date={item.date}
+              createdAt={item.createdAt}
               key={item.id}
             />
           </SwiperSlide>

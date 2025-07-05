@@ -1,13 +1,18 @@
 "use client";
 import { useMobileMenu } from "@/context/mobileMenuContext";
-import { menuItems } from "@/mocks/headerData";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+const menuItems = [
+  { id: 1, title: "خانه", path: "/" },
+  { id: 2, title: "محصولات", path: "/products" },
+  { id: 3, title: "اموزش", path: "/tutorials" },
+  { id: 4, title: "وبلاگ", path: "/blog" },
+  { id: 5, title: "درباره ما", path: "/about-us" },
+];
 const Header = () => {
   const { toggleMenu } = useMobileMenu();
   const [searchOpen, setSearchOpen] = useState(false);
