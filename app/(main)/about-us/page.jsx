@@ -1,9 +1,6 @@
-import AchievementItem from "@/components/about-us/AchievementItem";
-import AnimatedNumbers from "@/components/about-us/AnimatedNumbers";
-import Image from "next/image";
-import CooperateForm from "../../components/about-us/CooperateForm";
 import Achievements from "@/components/about-us/Achievements";
 import AboutUs from "@/components/about-us/AboutUs";
+import CooperateForm from "@/components/about-us/CooperateForm";
 
 const AboutUsPage = () => {
   return (

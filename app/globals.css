@@ -28,6 +28,10 @@
   --color-pal4-700: #8242ae;
   --color-pal4-800: #6e3a8f;
   --color-back-gray: #f7f7f8;
+  --color-back-gradient-1: #67B26F;
+  --color-back-gradient-2: #4ca2cd;
+  --color-back-gradient-3: #b3ffab;
+  --color-back-gradient-4: #12fff7;
 }
 /* Fonts */
 @font-face {
