@@ -10,7 +10,6 @@ const CooperateForm = () => {
     success: null,
     message: null,
   });
-  console.log(state);
   return (
     <>
       <section className="container mx-auto">

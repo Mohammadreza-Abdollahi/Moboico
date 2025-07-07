@@ -12,7 +12,6 @@ const ProductSchema = new mongoose.Schema(
     content: String,
     createAt: { type: String, required: true },
   },
-  { _id: false }
 );
 
 export default mongoose.models.Product ||

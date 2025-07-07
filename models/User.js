@@ -12,60 +12,62 @@ const AddressSchema = new mongoose.Schema(
   },
   { _id: false }
 );
-const UserSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    phone: {
-      type: String,
-    },
-    addresses: [AddressSchema],
-    role: {
-      type: String,
-      enum: ["user", "admin", "creator"],
-      default: "user",
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
-    cart: [
-      {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-      },
-    ],
-    favorites: [
-      {
+const UserSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    require: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+  },
+  addresses: [AddressSchema],
+  role: {
+    type: String,
+    enum: ["user", "admin", "creator"],
+    default: "user",
+    required: true,
+  },
+  isEmailVerified: {
+    type: Boolean,
+    default: false,
+  },
+  cart: [
+    {
+      product: {
         type: String,
         ref: "Product",
       },
-    ],
-    createdAt: {
-      type: Date,
-      default: Date.now,
+      quantity: {
+        type: Number,
+        default: 1,
+      },
     },
+  ],
+  favorites: [
+    {
+      type: String,
+      ref: "Product",
+    },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
-  { _id: false }
-);
+});
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

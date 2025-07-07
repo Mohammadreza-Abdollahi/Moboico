@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Tutorial from "@/models/Tutorial";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export const GET = async () => {
   try {
     await connectToDatabase();
     const tutorials = await Tutorial.find({});
@@ -13,4 +13,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-}
+};
