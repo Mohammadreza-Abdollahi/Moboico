@@ -19,18 +19,30 @@ const UserSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    required: true,
+    required: [true, "وارد کردن نام کاربری الزامی است."],
     trim: true,
+    minlength: [8, "نام کاربری باید حداقل 8 کاراکتر باشد"],
+    maxlength: [20, "نام کاربری باید حداکثر 20 کاراکتر باشد."],
+    match: [
+      /^(?=.*[A-Za-z])(?=.*\d).+$/,
+      "نام کاربری باید شامل حروف و عدد باشد",
+    ],
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    required: [true, "وارد کردن ایمیل الزامی است."],
+    unique: [true, "این ایمیل قبلا وارد شده است."],
     lowercase: true,
+    match: [/.+\@.+\..+/, "فرمت ایمیل معتبر نیست!"],
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "وارد کردن رمزعبور الزامی است."],
+    minlength: [8, "رمزعبور باید حداقل 8 کاراکتر باشد"],
+    match: [
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[-$#]).{8,}$/,
+      "رمزعبور باید حداقل ۸ کاراکتر، شامل حروف، عدد و یکی از کاراکترهای - یا $ یا # باشد",
+    ],
   },
   phone: {
     type: String,

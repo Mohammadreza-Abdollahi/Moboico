@@ -1,6 +1,6 @@
 import Achievements from "@/components/about-us/Achievements";
 import AboutUs from "@/components/about-us/AboutUs";
-import CooperateForm from "@/components/about-us/CooperateForm";
+import CooperateForm from "./CooperateForm";
 
 const AboutUsPage = () => {
   return (

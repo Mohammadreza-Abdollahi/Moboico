@@ -1,8 +1,8 @@
 "use client";
 
-import { sendCooperate } from "@/app/actions/sendCooperate";
 import { useActionState } from "react";
-import Spinner from "../Spinner";
+import Spinner from "../../../components/Spinner";
+import { sendCooperate } from "./actions";
 
 const CooperateForm = () => {
   const [state, formAction, pending] = useActionState(sendCooperate, {
