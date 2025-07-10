@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useActionState, useEffect } from "react";
 import { registerAction } from "./actions";
 import { redirect } from "next/navigation";
+import HomeButton from "@/components/HomeButton";
 
 const RegisterForm = () => {
   const [state, formAction, pending] = useActionState(registerAction, {
@@ -92,6 +93,7 @@ const RegisterForm = () => {
         </button>
         <div className="absolute top-2.5 right-1 flex">
           <BackButton />
+          <HomeButton />
         </div>
       </form>
     </>

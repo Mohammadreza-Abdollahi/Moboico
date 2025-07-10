@@ -17,6 +17,7 @@
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.0.0",
     "formidable": "^3.5.4",
+    "jsonwebtoken": "^9.0.2",
     "moment-jalaali": "^0.10.4",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.1",

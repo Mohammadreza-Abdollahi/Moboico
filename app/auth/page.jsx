@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 const Auth = () => {
-    redirect("/auth/register")
+    redirect("/auth/login")
 }
  
 export default Auth;
