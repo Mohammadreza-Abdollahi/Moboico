@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 import { connectToDatabase } from "@/lib/mongodb";
 import User from "@/models/User";
+import { getUserFromCookie } from "@/lib/auth";
 
 export const GET = async () => {
   try {
@@ -11,7 +11,7 @@ export const GET = async () => {
     if (!token) {
       return NextResponse.json({ error: "توکن وجود ندارد!" }, { status: 401 });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = getUserFromCookie();
     await connectToDatabase();
     const user = await User.findById(decoded.id).select("-password");
     if (!user) {
