@@ -113,7 +113,7 @@ const Header = () => {
                   </div>
                 </section>
               </div>
-              <Link href={"/auth"}>
+              <Link href={"/user"}>
                 <FontAwesomeIcon
                   icon={faUser}
                   className="text-pal1-600 hover:text-pal4-600 drop-shadow px-3 py-1 transition-all duration-150"
@@ -200,7 +200,7 @@ const Header = () => {
                   </div>
                 </section>
               </div>
-              <Link href={"/auth"}>
+              <Link href={"/user"}>
                 <FontAwesomeIcon
                   icon={faUser}
                   className="text-pal1-600 hover:text-pal4-600 drop-shadow px-3 py-1 transition-all duration-150"
