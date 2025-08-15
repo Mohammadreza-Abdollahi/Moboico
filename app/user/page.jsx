@@ -9,15 +9,15 @@ const UserPanel = async () => {
             اطلاعات کاربر
           </span>
           <div className="w-full md:w-1/2 flex justify-center md:justify-around items-center">
-            <span className="me-8 md:me-3">ایمیل :</span>
+            <span className="me-1 md:me-3">ایمیل :</span>
             <span>{"mohammad1384abdollahi@gmail.com"}</span>
           </div>
           <div className="w-full md:w-1/2 flex justify-center md:justify-around items-center">
-            <span className="me-8 md:me-3">نام کاربری :</span>
+            <span className="me-1 md:me-3">نام کاربری :</span>
             <span>{"Mohammadreza1384"}</span>
           </div>
         </section>
-        <section className="flex justify-between gap-8">
+        <section className="flex flex-col md:flex-row justify-between gap-2 md:gap-8">
           <div className="relative w-full min-h-60 px-2 py-5 mt-6 rounded border border-slate-300">
             <span className="absolute top-0 right-5 -translate-y-1/2 bg-white px-2">
               اخرین سفارشات
@@ -31,7 +31,7 @@ const UserPanel = async () => {
             <Error text="هیچ موردی به موردعلاقه ها اضافه نشده!" type="danger" />
           </div>
         </section>
-        <section className="flex justify-between gap-8">
+        <section className="flex flex-col md:flex-row justify-between gap-2 md:gap-8">
           <div className="relative w-full min-h-60 px-2 py-5 mt-6 rounded border border-slate-300">
             <span className="absolute top-0 right-5 -translate-y-1/2 bg-white px-2">
               آدرس ها

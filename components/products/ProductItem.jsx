@@ -1,15 +1,19 @@
 import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 
 const ProductItem = ({
   id = 1,
-  img = "/products/laptop.png",
+  img = "/structuralImages/default-img.jpg",
   alt = "",
   title = "",
   price = 0,
   discount = 0,
   count = 0,
+  isFavourite = false,
 }) => {
   return (
     <>
@@ -72,6 +76,9 @@ const ProductItem = ({
         ) : (
           ""
         )}
+        <span className={`absolute top-2 left-0.5 flex justify-center items-center text-3xl hover:text-red-500 transition-all duration-150 cursor-pointer px-3 py-1 ${isFavourite ? "text-red-500" : "text-slate-400"}`}>
+          <FontAwesomeIcon icon={isFavourite ? solidHeart : faHeart} />
+        </span>
       </section>
     </>
   );

@@ -8,6 +8,14 @@ import Link from "next/link";
 
 const Profile = () => {
   const { userData } = useUserData();
+  console.log(userData?._id);
+  const userId = userData?._id;
+  const fav = async () => {
+    const res = await fetch(`/api/products/favorites?userId=${userId}`);
+    const data = await res.json();
+    console.log(data);
+  };
+  fav();
   console.log(userData);
   return (
     <>
@@ -34,12 +42,12 @@ const Profile = () => {
           </div>
           <button
             onClick={(e) => navigator.clipboard.writeText(userData?.id)}
-            className="w-2/3 py-2 px-6 mt-2 rounded shadow bg-pal1-400 text-white hover:bg-pal1-600 transition-all duration-150 cursor-pointer"
+            className="w-full md:w-2/3 py-2 px-6 mt-2 rounded shadow bg-pal1-400 text-white hover:bg-pal1-600 transition-all duration-150 cursor-pointer"
           >
             کپی شناسه کاربری
           </button>
-          <button className="w-2/3 flex justify-center items-center py-2 px-6 mt-2 rounded align-middle shadow bg-pal4-500 text-white hover:bg-pal4-700 transition-all duration-150 cursor-pointer">
-            <Link href={'/admin'}>
+          <button className="w-full md:w-2/3 flex justify-center items-center py-2 px-6 mt-2 rounded align-middle shadow bg-pal4-500 text-white hover:bg-pal4-700 transition-all duration-150 cursor-pointer">
+            <Link href={"/admin"}>
               <FontAwesomeIcon
                 icon={faCrown}
                 className="text-yellow-300 mx-1.5 text-lg"

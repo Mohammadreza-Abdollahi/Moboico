@@ -15,7 +15,7 @@ const AddressSchema = new mongoose.Schema(
 const UserSchema = new mongoose.Schema({
   id: {
     type: String,
-    require: true,
+    required: true,
   },
   username: {
     type: String,
@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
     minlength: [8, "نام کاربری باید حداقل 8 کاراکتر باشد"],
     maxlength: [20, "نام کاربری باید حداکثر 20 کاراکتر باشد."],
     match: [
-      /^(?=.*[A-Za-z])(?=.*\d).+$/,
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9\-\$_]{8,20}$/,
       "نام کاربری باید شامل حروف و عدد باشد",
     ],
   },
@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "وارد کردن ایمیل الزامی است."],
     unique: [true, "این ایمیل قبلا وارد شده است."],
     lowercase: true,
-    match: [/.+\@.+\..+/, "فرمت ایمیل معتبر نیست!"],
+    match: [/^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "فرمت ایمیل معتبر نیست!"],
   },
   password: {
     type: String,
@@ -46,6 +46,8 @@ const UserSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
+    required: [true, "وارد کردن شماره تلفن الزامی است!"],
+    match: [/^09\d{9}$/, "شماره تلفن باید با 09 شروع شده و 11 رقم باشد."],
   },
   addresses: [AddressSchema],
   role: {
@@ -61,18 +63,20 @@ const UserSchema = new mongoose.Schema({
   cart: [
     {
       product: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Product",
+        required: true,
       },
       quantity: {
         type: Number,
         default: 1,
+        min: 1,
       },
     },
   ],
   favorites: [
     {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
   ],

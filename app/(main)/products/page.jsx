@@ -45,6 +45,7 @@ const ShopPage = async () => {
                   price={item.price}
                   discount={item.discount}
                   count={item.count}
+                  isFavourite={false}
                 />
               ))
             ) : (

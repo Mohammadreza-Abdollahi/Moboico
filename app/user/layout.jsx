@@ -14,7 +14,7 @@ const UserLayout = ({ children }) => {
             <section className="h-screen">
               <UserPanelAside />
               <UserPanelHeader />
-              <div className="w-full md:w-9/12 mr-auto pt-20 md:pt-22 px-3">
+              <div className="w-full md:w-9/12 mr-auto pt-20 md:pt-22 px-3 pb-20">
                 {children}
               </div>
               <UserPanelFooter/>

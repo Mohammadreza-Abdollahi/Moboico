@@ -12,7 +12,7 @@ export const POST = async (req) => {
         { error: "ایمیل و رمز عبور الزامی هستند" },
         { status: 400 }
       );
-    }
+    } 
     await connectToDatabase();
     const user = await User.findOne({ email });
     if (!user) {
