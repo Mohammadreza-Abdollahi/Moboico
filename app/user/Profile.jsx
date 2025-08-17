@@ -8,15 +8,6 @@ import Link from "next/link";
 
 const Profile = () => {
   const { userData } = useUserData();
-  console.log(userData?._id);
-  const userId = userData?._id;
-  const fav = async () => {
-    const res = await fetch(`/api/products/favorites?userId=${userId}`);
-    const data = await res.json();
-    console.log(data);
-  };
-  fav();
-  console.log(userData);
   return (
     <>
       <section className="py-5 px-3">

@@ -31,6 +31,8 @@ export const POST = async (req) => {
   try {
     await connectToDatabase();
     const { userId, productId } = await req.json();
+    console.log("Useeeer" + userId);
+    console.log(productId);
     if (!userId || !productId) {
       return NextResponse.json(
         { message: "شناسه کاربر و شناسه محصول الزامی است!" },
