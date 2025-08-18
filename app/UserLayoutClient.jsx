@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { useUserData } from "@/context/userDataContext";
+import { useEffect } from "react";
 
 export default function UserLayoutClient({ children }) {
   const { setUserData } = useUserData();
@@ -16,6 +16,7 @@ export default function UserLayoutClient({ children }) {
         const data = await res.json();
         if (res.ok) {
             setUserData(data.user);
+            console.log("Etelaat Karbar Daryaft Shod...");
         } else {
           console.log("خطا در گرفتن اطلاعات کاربر:", data.error);
         }

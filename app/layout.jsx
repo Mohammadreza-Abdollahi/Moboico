@@ -7,6 +7,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./globals.css";
 import Footer from "@/components/footer/Footer";
+import { UserDataProvider } from "@/context/userDataContext";
+import UserLayoutClient from "./UserLayoutClient";
 
 export const metadata = {
   title: "موبویکو | خانه",
@@ -18,7 +20,11 @@ export default function RootLayout({ children }) {
     <html lang="fa" dir="rtl">
       <Head />
       <body>
-        <MobileMenuProvider>{children}</MobileMenuProvider>
+        <UserDataProvider>
+          <UserLayoutClient>
+            <MobileMenuProvider>{children}</MobileMenuProvider>
+          </UserLayoutClient>
+        </UserDataProvider>
       </body>
     </html>
   );

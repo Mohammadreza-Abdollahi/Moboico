@@ -1,5 +1,4 @@
-import { UserDataProvider } from "@/context/userDataContext";
-import UserLayoutClient from "./UserLayoutClient";
+import UserLayoutClient from "../UserLayoutClient";
 import UserPanelHeader from "@/components/user-panel-layout/Header";
 import UserPanelAside from "@/components/user-panel-layout/Aside";
 import { MobileAsideProvider } from "@/context/mobileUserAsideContext";
@@ -9,7 +8,6 @@ const UserLayout = ({ children }) => {
   return (
     <>
       <MobileAsideProvider>
-        <UserDataProvider>
           <UserLayoutClient>
             <section className="h-screen">
               <UserPanelAside />
@@ -20,7 +18,6 @@ const UserLayout = ({ children }) => {
               <UserPanelFooter/>
             </section>
           </UserLayoutClient>
-        </UserDataProvider>
       </MobileAsideProvider>
     </>
   );

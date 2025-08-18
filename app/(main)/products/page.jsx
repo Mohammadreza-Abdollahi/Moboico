@@ -1,7 +1,7 @@
 import Loading from "@/components/loading";
-import ProductItem from "@/components/products/ProductItem";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ProductItem from "./ProductItem";
 
 const getProducts = async () => {
   const res = await fetch(` ${process.env.SITE_URL}/api/products`, {
@@ -19,7 +19,7 @@ const ShopPage = async () => {
             <div className="flex-4/12 md:flex-2/12 text-center">
               <span className="md:text-2xl text-slate-800">همه محصولات</span>
             </div>
-            <hr className="flex-4/12 md:flex-8/12 text-center text-pal1-400"/>
+            <hr className="flex-4/12 md:flex-8/12 text-center text-pal1-400" />
             <div className="flex-4/12 md:flex-2/12 text-center">
               <select
                 name="sorting"
@@ -30,7 +30,7 @@ const ShopPage = async () => {
                 <option value="most-popular">پرفروش ترین</option>
                 <option value="most-tidy">مرتب ترین</option>
               </select>
-              <FontAwesomeIcon icon={faListUl}/>
+              <FontAwesomeIcon icon={faListUl} />
             </div>
           </section>
           <section className="flex justify-center items-stretch flex-wrap gap-5 mt-10">
@@ -38,7 +38,7 @@ const ShopPage = async () => {
               products.map((item) => (
                 <ProductItem
                   key={item.id}
-                  id={item.id}
+                  id={item._id}
                   img={item.img}
                   alt={item.alt}
                   title={item.title}

@@ -1,10 +1,19 @@
+"use client";
+
+import { useUserData } from "@/context/userDataContext";
 import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
+const handleGetFavorites = async (userId) => {
+  const res = await fetch(`/api/products/favorites?userId=${userId}`);
+  const data = await res.json();
+  return data;
+};
 const ProductItem = ({
   id = 1,
   img = "/structuralImages/default-img.jpg",
@@ -13,8 +22,56 @@ const ProductItem = ({
   price = 0,
   discount = 0,
   count = 0,
-  isFavourite = false,
+  myfavorite = false,
 }) => {
+  const [isFavorite, setIsFavorite] = useState(myfavorite);
+  const [favorites, setFavorites] = useState();
+
+  const { userData } = useUserData();
+
+  const handleAddFavorite = async (userId, productId) => {
+    setIsFavorite((prev) => !prev);
+    console.log(userId);
+    console.log(productId);
+    const res = await fetch(`/api/products/favorites`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, productId }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+  const handleGetFavorites = async (userId) => {
+    const res = await fetch(`/api/products/favorites?userId=${userId}`);
+    const data = await res.json();
+    return data;
+  };
+
+  const checkIsFavorite = () => {
+    const check = favorites.some((item) => item._id === id);
+    console.log("Cheeeck" + check);
+    setIsFavorite(check);
+  };
+
+  useEffect(() => {
+    if (!userData?._id) return;
+
+    const fetchFavorites = async () => {
+      const data = await handleGetFavorites(userData._id);
+      setFavorites(data.favorites);
+    };
+
+    fetchFavorites();
+  }, [userData]);
+
+  useEffect(() => {
+    if (favorites?.length > 0) {
+      const check = favorites.some((item) => item._id === id);
+      setIsFavorite(check);
+    }
+  }, [favorites, id]);
   return (
     <>
       <section className="relative w-80 group bg-back-gray border border-pal1-400 hover:shadow-lg hover:shadow-pal3-600/30 hover:border hover:border-pal3-600 rounded overflow-hidden transition duration-150">
@@ -76,8 +133,13 @@ const ProductItem = ({
         ) : (
           ""
         )}
-        <span className={`absolute top-2 left-0.5 flex justify-center items-center text-3xl hover:text-red-500 transition-all duration-150 cursor-pointer px-3 py-1 ${isFavourite ? "text-red-500" : "text-slate-400"}`}>
-          <FontAwesomeIcon icon={isFavourite ? solidHeart : faHeart} />
+        <span
+          onClick={() => handleAddFavorite(userData?._id, id)}
+          className={`absolute top-2 left-0.5 flex justify-center items-center text-3xl hover:text-red-500 transition-all duration-150 cursor-pointer px-3 py-1 ${
+            isFavorite ? "text-red-500" : "text-slate-400"
+          }`}
+        >
+          <FontAwesomeIcon icon={isFavorite ? solidHeart : faHeart} />
         </span>
       </section>
     </>
