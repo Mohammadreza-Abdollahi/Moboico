@@ -17,7 +17,6 @@ const UserMenu = [
 const UserPanelAside = () => {
   const { isOpen, closeMenu } = useMobileAside();
   const path = usePathname();
-  console.log(path);
   useEffect(() => {
     closeMenu();
   }, []);

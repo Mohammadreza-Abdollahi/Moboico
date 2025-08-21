@@ -9,11 +9,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 const UserPanelHeader = () => {
   const { toggleMenu } = useMobileAside();
   const [dropdown, setDropdown] = useState(false);
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    redirect("/");
+  };
   return (
     <>
       <header className="fixed top-0 md:right-3/12 z-10 mr-auto w-full md:w-9/12 px-5 py-5 bg-back-gray border-b-2 border-pal1-400 shadow-xl">
@@ -69,13 +77,16 @@ const UserPanelHeader = () => {
                     </Link>
                   </li>
                   <li className="px-3 py-1.5 my-1 hover:bg-pal1 group">
-                    <Link href="/" className="flex items-center gap-2">
+                    <div
+                      onClick={handleLogout}
+                      className="flex items-center gap-2"
+                    >
                       <FontAwesomeIcon
                         className="text-lg text-slate-800 group-hover:text-yellow-500 transition-all duration-150"
                         icon={faArrowRightFromBracket}
                       />
                       خروج
-                    </Link>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -97,7 +108,7 @@ const UserPanelHeader = () => {
                   />
                 </Link>
               </div>
-              <div className="mx-2 px-2">
+              <div className="mx-2 px-2" onClick={handleLogout}>
                 <Link href="/">
                   <FontAwesomeIcon
                     className="text-2xl text-slate-800 hover:text-yellow-500 transition-all duration-150"

@@ -58,7 +58,7 @@ const FavoritesTable = () => {
               className="align-middle border-b-2 border-pal1-200"
             >
               <td>{convertToPersianDigits(item.id)}</td>
-              <td>
+              <td className="py-3">
                 <Image
                   className="w-60"
                   src={item.img}

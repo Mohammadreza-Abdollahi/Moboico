@@ -15,6 +15,7 @@ const Bio = () => {
   const { userData } = useUserData();
   const [lock, setLock] = useState(true);
   const [email, setEmail] = useState(userData?.email);
+  const [phone, setPhone] = useState(userData?.phone);
   const [username, setUsername] = useState(userData?.username);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,10 +25,10 @@ const Bio = () => {
     success: null,
     message: null,
   });
-  console.log(state);
   useEffect(() => {
     setEmail(userData?.email);
     setUsername(userData?.username);
+    setPhone(userData?.phone);
   }, [userData]);
   const handleLock = (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ const Bio = () => {
     setLock((prev) => !prev);
     if (!lock) {
       setEmail(userData?.email);
+      setPhone(userData?.phone);
       setUsername(userData?.username);
       setPassword("");
     }
@@ -44,10 +46,12 @@ const Bio = () => {
     setLoading(true);
     try {
       const emailRegex = /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const phoneRegex = /^09\d{9}$/;
       const usernameRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9\-\$_]{8,20}$/;
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[-$#]).{8,}$/;
 
       const emailValid = emailRegex.test(email);
+      const phoneValid = phoneRegex.test(phone);
       const usernameValid = usernameRegex.test(username);
       const passwordValid = passwordRegex.test(password);
 
@@ -65,6 +69,13 @@ const Bio = () => {
           message: "ایمیل صحیح نیست!",
         }));
         setLoading(false);
+      } else if (!phoneValid) {
+        setState((prevState) => ({
+          ...prevState,
+          success: false,
+          message: "تلفن همراه صحیح نیست!",
+        }));
+        setLoading(false);
       } else if (!usernameValid) {
         setState((prevState) => ({
           ...prevState,
@@ -78,7 +89,7 @@ const Bio = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, username, password }),
+        body: JSON.stringify({ email, phone, username, password }),
         credentials: "include",
       });
       if (res.ok) {
@@ -128,7 +139,7 @@ const Bio = () => {
           <span className="absolute top-0 right-5 -translate-y-1/2 bg-white px-2 text-slate-800">
             اطلاعات شخصی
           </span>
-          <div className="w-full md:w-1/2 flex justify-center md:justify-around items-center">
+          <div className="w-full md:w-1/3 flex justify-center md:justify-around items-center">
             <section className="relative w-full">
               <label
                 className="absolute -top-3 right-3 text-slate-700 bg-white px-2"
@@ -148,7 +159,27 @@ const Bio = () => {
               />
             </section>
           </div>
-          <div className="w-full md:w-1/2 flex justify-center md:justify-around items-center">
+          <div className="w-full md:w-1/3 flex justify-center md:justify-around items-center">
+            <section className="relative w-full">
+              <label
+                className="absolute -top-3 right-3 text-slate-700 bg-white px-2"
+                htmlFor={"phone"}
+              >
+                تلفن همراه
+              </label>
+              <input
+                className="w-full text-slate-800 py-2.5 px-2 border-2 border-pal1-400 focus:border-pal4-600 rounded outline-none transition-all duration-150"
+                type={"phone"}
+                name={"phone"}
+                id={"phone"}
+                placeholder={"لطفا ایمیل خود را وارد کنید..."}
+                value={phone || ""}
+                onChange={(e) => setPhone(e.target.value)}
+                readOnly={lock}
+              />
+            </section>
+          </div>
+          <div className="w-full md:w-1/3 flex justify-center md:justify-around items-center">
             <section className="relative w-full">
               <label
                 className="absolute -top-3 right-3 text-slate-700 bg-white px-2"

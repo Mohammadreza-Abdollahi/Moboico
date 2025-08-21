@@ -9,11 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const handleGetFavorites = async (userId) => {
-  const res = await fetch(`/api/products/favorites?userId=${userId}`);
-  const data = await res.json();
-  return data;
-};
+
 const ProductItem = ({
   id = 1,
   img = "/structuralImages/default-img.jpg",
@@ -22,17 +18,14 @@ const ProductItem = ({
   price = 0,
   discount = 0,
   count = 0,
-  myfavorite = false,
 }) => {
-  const [isFavorite, setIsFavorite] = useState(myfavorite);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [favorites, setFavorites] = useState();
 
   const { userData } = useUserData();
 
   const handleAddFavorite = async (userId, productId) => {
     setIsFavorite((prev) => !prev);
-    console.log(userId);
-    console.log(productId);
     const res = await fetch(`/api/products/favorites`, {
       method: "POST",
       headers: {
@@ -47,12 +40,6 @@ const ProductItem = ({
     const res = await fetch(`/api/products/favorites?userId=${userId}`);
     const data = await res.json();
     return data;
-  };
-
-  const checkIsFavorite = () => {
-    const check = favorites.some((item) => item._id === id);
-    console.log("Cheeeck" + check);
-    setIsFavorite(check);
   };
 
   useEffect(() => {
@@ -133,14 +120,16 @@ const ProductItem = ({
         ) : (
           ""
         )}
-        <span
-          onClick={() => handleAddFavorite(userData?._id, id)}
-          className={`absolute top-2 left-0.5 flex justify-center items-center text-3xl hover:text-red-500 transition-all duration-150 cursor-pointer px-3 py-1 ${
-            isFavorite ? "text-red-500" : "text-slate-400"
-          }`}
-        >
-          <FontAwesomeIcon icon={isFavorite ? solidHeart : faHeart} />
-        </span>
+        {userData && (
+          <span
+            onClick={() => handleAddFavorite(userData?._id, id)}
+            className={`absolute top-2 left-0.5 flex justify-center items-center text-3xl hover:text-red-500 transition-all duration-150 cursor-pointer px-3 py-1 ${
+              isFavorite ? "text-red-500" : "text-slate-400"
+            }`}
+          >
+            <FontAwesomeIcon icon={isFavorite ? solidHeart : faHeart} />
+          </span>
+        )}
       </section>
     </>
   );

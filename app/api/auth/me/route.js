@@ -29,8 +29,8 @@ export const GET = async () => {
 };
 export const PATCH = async (req) => {
   try {
-    const { email, username, password } = await req.json();
-    const updateData = { email, username };
+    const { email, phone, username, password } = await req.json();
+    const updateData = { email , phone, username };
 
     const decoded = getUserFromCookie();
 
