@@ -1,17 +1,14 @@
 const { default: mongoose } = require("mongoose");
 
-const AddressSchema = new mongoose.Schema(
-  {
-    fullName: { type: String, required: true },
-    phone: { type: String, required: true },
-    city: { type: String, required: true },
-    province: { type: String, required: true },
-    postalCode: { type: String },
-    addressLine: { type: String, required: true },
-    isDefault: { type: Boolean, default: false },
-  },
-  { _id: false }
-);
+const AddressSchema = new mongoose.Schema({
+  fullName: { type: String, required: true },
+  phone: { type: String, required: true },
+  province: { type: String, required: true },
+  city: { type: String, required: true },
+  postalCode: { type: String },
+  addressLine: { type: String, required: true },
+  isDefault: { type: Boolean, default: false },
+});
 const UserSchema = new mongoose.Schema({
   id: {
     type: String,

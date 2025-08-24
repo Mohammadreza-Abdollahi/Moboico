@@ -79,6 +79,7 @@ export const POST = async (req) => {
       );
     }
   } catch (err) {
+    console.log(err);
     return NextResponse.json(
       { error: "خطا در حذف و اضافه کردن علاقه مندی ها!" },
       { status: 500 }
