@@ -15,9 +15,21 @@ export const POST = async (req) => {
       addressLine,
       isDefault,
     } = await req.json();
-    const user = User.findById(userId).select("-password");
+    const user = await User.findById(userId).select("-password");
     if (!user) {
       return NextResponse.json({ message: "کاربر یافت نشد!" }, { status: 404 });
+    }
+    const postalCodeAlreadyExist = user.addresses.some(
+      (item) =>
+        item.postalCode &&
+        postalCode &&
+        item.postalCode.toString().trim() === postalCode.toString().trim()
+    );
+    if (postalCodeAlreadyExist) {
+      return NextResponse.json(
+        { message: "ادرس هم اکنون وجود دارد!" },
+        { status: 400 }
+      );
     }
     user.addresses.push({
       fullName,
@@ -36,7 +48,7 @@ export const POST = async (req) => {
   } catch (err) {
     console.log(err);
     return NextResponse.json(
-      { message: "خزای در افزودن ادرس ها!" },
+      { message: "خطا در افزودن ادرس ها!" },
       { status: 500 }
     );
   }
