@@ -31,6 +31,11 @@ export const POST = async (req) => {
         { status: 400 }
       );
     }
+    if (isDefault) {
+      user.addresses.forEach((addr) => {
+        addr.isDefault = false;
+      });
+    }
     user.addresses.push({
       fullName,
       phone,

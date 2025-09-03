@@ -1,7 +1,12 @@
 import { useUserData } from "@/context/userDataContext";
 import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faHouseCircleCheck,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 const AddressesList = () => {
   const { userData } = useUserData();
@@ -14,12 +19,11 @@ const AddressesList = () => {
             className="bg-back-gray text-slate-800 py-3 px-5 my-3 rounded-md flex justify-start items-center"
           >
             <section className="flex-1/12 px-5 text-center">
-              <input
-                name="addressses"
-                className="w-5 h-5 text-white"
-                id="address-2"
-                type="radio"
-                checked={item?.isDefault}
+              <FontAwesomeIcon
+                icon={faHouseCircleCheck}
+                className={`text-2xl ${
+                  item?.isDefault ? "text-pal1-400" : "text-slate-400"
+                }`}
               />
             </section>
             <label htmlFor="address-2" className="flex-9/12">
@@ -38,15 +42,15 @@ const AddressesList = () => {
                 </section>
                 <section className="flex-3">
                   <div className="my-2">
-                    <span className="text-base">تلفن همراه : </span>
+                    <span className="text-base">کدپستی : </span>
                     <span className="text-slate-500 text-sm">
-                      {convertToPersianDigits(item?.phone)}
+                      {convertToPersianDigits(item?.postalCode)}
                     </span>
                   </div>
                   <div className="my-2">
-                    <span className="text-base">تلفن ثابت : </span>
+                    <span className="text-base">تلفن همراه : </span>
                     <span className="text-slate-500 text-sm">
-                      {convertToPersianDigits(item?.landlinePhone)}
+                      {convertToPersianDigits(item?.phone)}
                     </span>
                   </div>
                 </section>
@@ -61,12 +65,12 @@ const AddressesList = () => {
               </section>
             </label>
             <section className="flex-2/12 text-center px-5">
-              <button>
+              <Link href={`/user/addresses/${item?._id}/edit`}>
                 <FontAwesomeIcon
                   icon={faEdit}
                   className="text-xl text-yellow-500 mx-3 cursor-pointer"
                 />
-              </button>
+              </Link>
               <button>
                 <FontAwesomeIcon
                   icon={faTrash}
