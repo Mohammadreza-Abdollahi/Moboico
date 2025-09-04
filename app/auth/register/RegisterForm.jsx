@@ -63,7 +63,7 @@ const RegisterForm = () => {
             </Link>
           </span>
         </div>
-        {state.error ? (
+        {state.error  (
           <div
             className={`py-3 mt-2 bg-red-200 rounded transition-all duration-150`}
           >
@@ -78,7 +78,7 @@ const RegisterForm = () => {
               </li>
             </ul>
           </div>
-        ) : state.success ? (
+        ) : state.success  (
           <div
             className={`py-3 mt-2 bg-green-200 rounded transition-all duration-150`}
           >
@@ -89,7 +89,7 @@ const RegisterForm = () => {
           disabled={pending}
           className="w-full cursor-pointer bg-pal1-400 py-2.5 mt-5 rounded text-white border-2 border-pal1-400 hover:border-pal4-600 hover:bg-transparent hover:text-pal4-600 disabled:opacity-50 transition-all duration-150"
         >
-          {pending ? <Spinner /> : "ثبت نام"}
+          {pending  <Spinner /> : "ثبت نام"}
         </button>
         <div className="absolute top-2.5 right-1 flex">
           <BackButton />

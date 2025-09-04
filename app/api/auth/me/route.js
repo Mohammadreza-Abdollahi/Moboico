@@ -51,7 +51,7 @@ export const PATCH = async (req) => {
         new: true,
         runValidators: true,
       }
-    ).select("-password");
+    ).select("-password");    
     if (!updatedUser) {
       return NextResponse.json({ message: "کاربر پیدا نشد" }, { status: 404 });
     }
