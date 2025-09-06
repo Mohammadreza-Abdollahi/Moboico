@@ -6,7 +6,7 @@ const AddressSchema = new mongoose.Schema({
   province: { type: String, required: true },
   city: { type: String, required: true },
   postalCode: { type: String },
-  addressLine: { type: String},
+  addressLine: { type: String },
   isDefault: { type: Boolean, default: false },
 });
 const UserSchema = new mongoose.Schema({

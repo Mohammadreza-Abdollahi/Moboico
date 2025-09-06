@@ -1,5 +1,6 @@
 "use client";
 import { useUserData } from "@/context/userDataContext";
+import ConfirmModal from "@/utilities/ConfirmModal";
 import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,6 +26,8 @@ const handleDeleteFavorites = async (userId, productId) => {
 };
 const FavoritesTable = () => {
   const { userData } = useUserData();
+  const [open, setOpen] = useState(false);
+  const [itemId, setItemId] = useState();
   const [favorites, setFavorites] = useState([]);
   useEffect(() => {
     if (!userData?._id) return;
@@ -42,6 +45,14 @@ const FavoritesTable = () => {
   };
   return (
     <>
+      <ConfirmModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={() => handleDeleteItem(userData._id, itemId)}
+        icon="danger"
+        title="حذف"
+        description="آیا از حذف این مورد اطمینان دارید؟"
+      />
       <table className="w-full">
         <thead className="text-center">
           <tr className="border-b-2 border-pal1-500 pb-5">
@@ -77,8 +88,11 @@ const FavoritesTable = () => {
               </td>
               <td>
                 <button
-                  onClick={() => handleDeleteItem(userData._id, item._id)}
-                  className="text-red-500 hover:text-red-800 text-xl transition-all duration-150"
+                  onClick={() => {
+                    setOpen(true);
+                    setItemId(item._id);
+                  }}
+                  className="text-red-500 p-3 cursor-pointer hover:text-red-800 text-xl transition-all duration-150"
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
