@@ -114,4 +114,4 @@ export const PATCH = async (req) => {
     );
   }
 };
-// export const DELETE = async () => {};
+export const DELETE = async () => {};

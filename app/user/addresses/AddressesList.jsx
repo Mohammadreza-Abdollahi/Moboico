@@ -1,5 +1,6 @@
 "use client";
 import { useUserData } from "@/context/userDataContext";
+import ConfirmModal from "@/utilities/ConfirmModal";
 import { convertToPersianDigits } from "@/utilities/convertToPersianDigits";
 import {
   faEdit,
@@ -8,13 +9,43 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
+const handleDeleteAddress = async (addressId) => {
+  const res = await fetch(`/api/address/${addressId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = await res.json();
+  console.log(data);
+};
 const AddressesList = () => {
   const { userData } = useUserData();
+  const [addresses, setAddresses] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [itemId, setItemId] = useState();
+  useEffect(() => {
+    setAddresses(userData?.addresses);
+  }, [userData]);
+  const handleDeleteItem = (addressId) => {
+    setAddresses((prev) => prev.filter((item) => item._id !== addressId));
+    handleDeleteAddress(addressId);
+  };
   return (
     <>
+      <ConfirmModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={() => handleDeleteItem(itemId)}
+        icon="trash"
+        title="حذف"
+        description="آیا از حذف این مورد اطمینان دارید؟"
+      />
       <section className="w-full px-5">
-        {userData?.addresses.map((item) => (
+        {addresses?.map((item) => (
           <div
             key={item?._id}
             className="bg-back-gray text-slate-800 py-3 px-5 my-3 rounded-md flex justify-start items-center"
@@ -72,7 +103,12 @@ const AddressesList = () => {
                   className="text-xl text-yellow-500 mx-3 cursor-pointer"
                 />
               </Link>
-              <button>
+              <button
+                onClick={() => {
+                  setOpen(true);
+                  setItemId(item._id);
+                }}
+              >
                 <FontAwesomeIcon
                   icon={faTrash}
                   className="text-xl text-red-500 mx-3 cursor-pointer"

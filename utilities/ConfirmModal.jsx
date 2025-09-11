@@ -4,6 +4,7 @@ import {
   faCircleCheck,
   faCircleExclamation,
   faCircleXmark,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -33,6 +34,8 @@ const ConfirmModal = ({
                   ? faCircleExclamation
                   : icon === "danger"
                   ? faCircleXmark
+                  : icon === "trash"
+                  ? faTrash
                   : null
               }
               className={`text-7xl md:text-5xl ${
@@ -41,6 +44,8 @@ const ConfirmModal = ({
                   : icon === "info"
                   ? "text-blue-500"
                   : icon === "danger"
+                  ? "text-red-500"
+                  : "danger"
                   ? "text-red-500"
                   : null
               }`}

@@ -49,7 +49,7 @@ const FavoritesTable = () => {
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={() => handleDeleteItem(userData._id, itemId)}
-        icon="danger"
+        icon="trash"
         title="حذف"
         description="آیا از حذف این مورد اطمینان دارید؟"
       />
