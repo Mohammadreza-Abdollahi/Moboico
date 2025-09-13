@@ -3,7 +3,7 @@
 import { faHourglass1 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
-const SelectAddress = ({ setProvince, province, setCity }) => {
+const SelectAddress = ({ setProvince, province, city, setCity }) => {
   const [data, setData] = useState({});
   const [provinces, setProvinces] = useState([]);
   const [cities, setCities] = useState([]);
@@ -33,6 +33,7 @@ const SelectAddress = ({ setProvince, province, setCity }) => {
           </label>
           <select
             onChange={(e) => setProvince(e.target.value)}
+            value={province}
             name="province"
             id="province"
             className="w-full text-slate-800 py-2.5 px-2 border-2 border-pal1-400 focus:border-pal4-600 rounded outline-none transition-all duration-150"
@@ -54,6 +55,7 @@ const SelectAddress = ({ setProvince, province, setCity }) => {
           </label>
           <select
             onChange={(e) => setCity(e.target.value)}
+            value={city}
             name="city"
             id="city"
             className="w-full text-slate-800 py-2.5 px-2 border-2 border-pal1-400 focus:border-pal4-600 rounded outline-none transition-all duration-150"
