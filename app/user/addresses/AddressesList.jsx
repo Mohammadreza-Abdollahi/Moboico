@@ -20,20 +20,40 @@ const handleDeleteAddress = async (addressId) => {
     credentials: "include",
   });
   const data = await res.json();
-  console.log(data);
+};
+const handleGetAddresses = async () => {
+  const res = await fetch(`/api/address`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = await res.json();
+  return data;
 };
 const AddressesList = () => {
   const { userData } = useUserData();
   const [addresses, setAddresses] = useState([]);
   const [open, setOpen] = useState(false);
   const [itemId, setItemId] = useState();
-  useEffect(() => {
-    setAddresses(userData?.addresses);
-  }, [userData]);
   const handleDeleteItem = (addressId) => {
     setAddresses((prev) => prev.filter((item) => item._id !== addressId));
     handleDeleteAddress(addressId);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await handleGetAddresses();
+        setAddresses(data.addresses);
+      } catch (error) {
+        console.error("خطا در دریافت آدرس‌ها:", error);
+        setAddresses([]);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <ConfirmModal

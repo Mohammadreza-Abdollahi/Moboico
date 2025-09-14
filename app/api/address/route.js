@@ -1,7 +1,32 @@
+import { getUserFromCookie } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
 
+export const GET = async (req) => {
+  try {
+    await connectToDatabase();
+    const decoded = getUserFromCookie();
+    if (!decoded) {
+      return NextResponse.json(
+        { message: "ابتدا وارد حساب کاربری خود شوید!" },
+        { status: 404 }
+      );
+    }
+    const userId = decoded.id;
+    const user = await User.findById(userId).select("addresses");
+    if (!user) {
+      return NextResponse.json({ message: "کاربر یافت نشد!" }, { status: 404 });
+    }
+    return NextResponse.json({ addresses: user.addresses }, { status: 200 });
+  } catch (err) {
+    console.error("Error fetching addresses:", err);
+    return NextResponse.json(
+      { message: "خطا در دریافت آدرس‌ها!" },
+      { status: 500 }
+    );
+  }
+};
 export const POST = async (req) => {
   try {
     await connectToDatabase();
