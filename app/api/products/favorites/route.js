@@ -1,3 +1,4 @@
+import { getUserFromCookie } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import User from "@/models/User";
 import mongoose from "mongoose";
@@ -6,8 +7,14 @@ import { NextResponse } from "next/server";
 export const GET = async (req) => {
   try {
     await connectToDatabase();
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get("userId");
+    const decoded = getUserFromCookie();
+    if (!decoded) {
+      return NextResponse.json(
+        { message: "ابتدا وارد حساب کاربری شوید!" },
+        { status: 401 }
+      );
+    }
+    const userId = decoded.id;
     if (!userId) {
       return NextResponse.json(
         { message: "شناسه کاربر الزامی است!" },

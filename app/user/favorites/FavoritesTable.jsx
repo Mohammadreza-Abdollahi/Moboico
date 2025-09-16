@@ -8,12 +8,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const handleGetFavorites = async (userId) => {
-  const res = await fetch(`/api/products/favorites?userId=${userId}`);
+const handleGetFavorites = async () => {
+  const res = await fetch(`/api/products/favorites`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
   const data = await res.json();
   return data;
 };
-const handleDeleteFavorites = async (userId, productId) => {
+const handleDeleteFavorites = async (productId) => {
   const res = await fetch(`/api/products/favorites`, {
     method: "POST",
     headers: {
@@ -41,7 +47,7 @@ const FavoritesTable = () => {
   }, [userData]);
   const handleDeleteItem = (userId, productId) => {
     setFavorites((prev) => prev.filter((item) => item._id !== productId));
-    handleDeleteFavorites(userId, productId);
+    handleDeleteFavorites(productId);
   };
   return (
     <>
@@ -53,54 +59,63 @@ const FavoritesTable = () => {
         title="حذف"
         description="آیا از حذف این مورد اطمینان دارید؟"
       />
-      <table className="w-full">
-        <thead className="text-center">
-          <tr className="border-b-2 border-pal1-500 pb-5">
-            <th className="w-1/12 pb-4">#</th>
-            <th className="w-3/12 pb-4">تصویر محصول</th>
-            <th className="w-7/12 pb-4">نام محصول</th>
-            <th className="w-1/12 pb-4">عملیات</th>
-          </tr>
-        </thead>
-        <tbody className="text-center text-lg">
-          {favorites.map((item) => (
-            <tr
-              key={item.id}
-              className="align-middle border-b-2 border-pal1-200"
-            >
-              <td>{convertToPersianDigits(item.id)}</td>
-              <td className="py-3">
-                <Image
-                  className="w-60"
-                  src={item.img}
-                  alt={item.alt_Img}
-                  width={260}
-                  height={260}
-                />
-              </td>
-              <td>
-                <Link
-                  href={`products/${item._id}`}
-                  className="hover:text-pal1-600"
-                >
-                  <span className="line-clamp-1">{item.title}</span>
-                </Link>
-              </td>
-              <td>
-                <button
-                  onClick={() => {
-                    setOpen(true);
-                    setItemId(item._id);
-                  }}
-                  className="text-red-500 p-3 cursor-pointer hover:text-red-800 text-xl transition-all duration-150"
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </td>
+      {favorites.length === 0 && (
+        <section className="w-full">
+          <h1 className="text-center bg-red-100 text-red-900 py-3 rounded">
+            هیچ محصولی در مورد علاقه ها وجود ندارد!
+          </h1>
+        </section>
+      )}
+      {favorites.length > 0 && (
+        <table className="w-full">
+          <thead className="text-center">
+            <tr className="border-b-2 border-pal1-500 pb-5">
+              <th className="w-1/12 pb-4">#</th>
+              <th className="w-3/12 pb-4">تصویر محصول</th>
+              <th className="w-7/12 pb-4">نام محصول</th>
+              <th className="w-1/12 pb-4">عملیات</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-center text-lg">
+            {favorites.map((item) => (
+              <tr
+                key={item.id}
+                className="align-middle border-b-2 border-pal1-200"
+              >
+                <td>{convertToPersianDigits(item.id)}</td>
+                <td className="py-3">
+                  <Image
+                    className="w-60"
+                    src={item.img}
+                    alt={item.alt_Img}
+                    width={260}
+                    height={260}
+                  />
+                </td>
+                <td>
+                  <Link
+                    href={`products/${item._id}`}
+                    className="hover:text-pal1-600"
+                  >
+                    <span className="line-clamp-1">{item.title}</span>
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setItemId(item._id);
+                    }}
+                    className="text-red-500 p-3 cursor-pointer hover:text-red-800 text-xl transition-all duration-150"
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </>
   );
 };

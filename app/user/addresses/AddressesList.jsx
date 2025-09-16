@@ -65,7 +65,7 @@ const AddressesList = () => {
         description="آیا از حذف این مورد اطمینان دارید؟"
       />
       <section className="w-full px-5">
-        {addresses?.map((item) => (
+        {addresses.length > 0 && addresses?.map((item) => (
           <div
             key={item?._id}
             className="bg-back-gray text-slate-800 py-3 px-5 my-3 rounded-md flex justify-start items-center"
@@ -137,6 +137,13 @@ const AddressesList = () => {
             </section>
           </div>
         ))}
+        {
+          addresses.length === 0 && (
+            <h1 className="text-center bg-red-100 text-red-900 py-3 rounded">
+              هیچ آدرسی ثبت نشده است!
+            </h1>
+          )
+        }
       </section>
     </>
   );

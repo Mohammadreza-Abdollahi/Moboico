@@ -44,6 +44,14 @@ export const POST = async (req) => {
     if (!user) {
       return NextResponse.json({ message: "کاربر یافت نشد!" }, { status: 404 });
     }
+    if (user.addresses.length >= 3) {
+      return NextResponse.json(
+        {
+          message: "شما نمی‌توانید بیشتر از ۳ آدرس داشته باشید!",
+        },
+        { status: 400 }
+      );
+    }
     const postalCodeAlreadyExist = user.addresses.some(
       (item) =>
         item.postalCode &&
