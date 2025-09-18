@@ -77,12 +77,12 @@ const FavoritesTable = () => {
             </tr>
           </thead>
           <tbody className="text-center text-lg">
-            {favorites.map((item) => (
+            {favorites.map((item, index) => (
               <tr
                 key={item.id}
                 className="align-middle border-b-2 border-pal1-200"
               >
-                <td>{convertToPersianDigits(item.id)}</td>
+                <td>{convertToPersianDigits(index + 1)}</td>
                 <td className="py-3">
                   <Image
                     className="w-60"

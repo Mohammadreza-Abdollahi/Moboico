@@ -9,6 +9,7 @@ export const GET = async (req, { params }) => {
 
     const { addressId } = params;
     const decoded = getUserFromCookie();
+    console.log("Decoded:::::::::" + JSON.stringify(decoded) );
 
     if (!decoded) {
       return NextResponse.json(
