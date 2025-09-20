@@ -1,9 +1,35 @@
 import { getUserFromCookie } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import Ticket from "@/models/Ticket";
-import User from "@/models/User";
 import { NextResponse } from "next/server";
 
+export const GET = async (req) => {
+  try {
+    await connectToDatabase();
+    const decoded = getUserFromCookie();
+    if (!decoded) {
+      return NextResponse.json(
+        { message: "ابتدا وارد حساب کاربری خود شوید!" },
+        { status: 401 }
+      );
+    }
+    const tickets = await Ticket.find({ user: decoded.id });
+    if (tickets.length === 0) {
+      return NextResponse.json(
+        { message: "هیچ تیکتی برای شما وجود ندارد!" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ tickets }, { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { message: "خطا در دریافت تیکت ها!" },
+      { status: 500 }
+    );
+  }
+};
 export const POST = async (req) => {
   try {
     await connectToDatabase();
@@ -12,16 +38,15 @@ export const POST = async (req) => {
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب خود شوید!" },
-        { status: 500 }
+        { status: 401 }
       );
     }
     const userId = decoded.id;
-    const user = await User.findById(userId).select("-password");
-    if (!user) {
-      return NextResponse.json({ message: "کاربر یافت نشد!" }, { status: 404 });
-    }
+    const userRole = decoded.role;
 
-    const { subject, priority, message } = req.body;
+    const body = await req.json();
+    const { subject, priority, message } = body;
+
     if (!subject || !message) {
       return NextResponse.json(
         { message: "موضوع و پیام الزامی است." },
@@ -32,9 +57,9 @@ export const POST = async (req) => {
     const ticket = await Ticket.create({
       user: userId,
       subject,
-      message: [
+      messages: [
         {
-          sender: user.enum || "user",
+          sender: userRole || "user",
           message: message || "سلام",
         },
       ],

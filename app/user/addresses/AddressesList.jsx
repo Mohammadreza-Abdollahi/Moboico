@@ -33,7 +33,6 @@ const handleGetAddresses = async () => {
   return data;
 };
 const AddressesList = () => {
-  const { userData } = useUserData();
   const [addresses, setAddresses] = useState([]);
   const [open, setOpen] = useState(false);
   const [itemId, setItemId] = useState();

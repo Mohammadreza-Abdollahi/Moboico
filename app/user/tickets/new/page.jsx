@@ -1,14 +1,39 @@
 "use client";
 
 import BackButton from "@/components/BackButton";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const NewTickets = () => {
+  const router = useRouter();
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [priority, setPriority] = useState("medium");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [disable, setDisable] = useState(false);
+  const handleOpenTicket = async () => {
+    console.log(subject);
+    console.log(message);
+    console.log(priority);
+    const res = await fetch("/api/tickets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ subject, message, priority }),
+      credentials: "include",
+    });
+    const data = await res.json();
+    if (res.status === 201) {
+      setSuccess("تیکت شما باز و پیام شما ارسال شد.");
+      setTimeout(() => {
+        router.push("/user/tickets");
+      }, 2000);
+    } else {
+      setError(data.message);
+    }
+  };
   return (
     <>
       <section className="relative pt-3 md:px-16">
@@ -32,7 +57,7 @@ const NewTickets = () => {
             type={"text"}
             name={"subject"}
             id={"subject"}
-            placeholder={"موضوع تیکت را وادر کنید..."}
+            placeholder={"موضوع تیکت را وارد کنید..."}
           />
         </section>
         <div className="my-5">
@@ -89,7 +114,8 @@ const NewTickets = () => {
               توضیحات
             </label>
             <textarea
-              onChange={(e) => setAddressLine(e.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
               rows={6}
               name="address-line"
               id="address-line"
@@ -118,7 +144,17 @@ const NewTickets = () => {
           )}
         </div>
         <div className="flex flex-col md:flex-row gap-8 md:gap-5 mt-8">
-          <button className="w-full bg-pal1-400 hover:bg-pal1-600 text-white py-2.5 rounded cursor-pointer">
+          <button
+            disabled={disable}
+            onClick={() => {
+              setDisable(true);
+              handleOpenTicket();
+              setTimeout(() => {
+                setDisable(false)
+              }, 3000);
+            }}
+            className="w-full bg-pal1-400 hover:bg-pal1-600 disabled:bg-pal1-400/50 text-white py-2.5 rounded cursor-pointer"
+          >
             ارسال
           </button>
         </div>
