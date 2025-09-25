@@ -1,7 +1,47 @@
 import { getUserFromCookie } from "@/lib/auth";
+import { connectToDatabase } from "@/lib/mongodb";
 import Ticket from "@/models/Ticket";
 import { NextResponse } from "next/server";
 
+export const GET = async (req, { params }) => {
+  try {
+    await connectToDatabase();
+    const decoded = getUserFromCookie();
+    const userId = decoded.id;
+    if (!decoded) {
+      return NextResponse.json(
+        { message: "ابتدا وارد حساب کاربری شوید!" },
+        { status: 401 }
+      );
+    }
+
+    const { ticketId } = params;
+    const ticket = await Ticket.findById(ticketId);
+    if (!ticket) {
+      return NextResponse.json({ message: "تیکت یافت نشد!" }, { status: 404 });
+    }
+
+    if (decoded.role === "user") {
+      if (ticket.user != userId) {
+        return NextResponse.json(
+          { message: "تیکت و صاحب تیکت همخوانی ندارد!" },
+          { status: 403 }
+        );
+      }
+    }
+
+    return NextResponse.json(
+      { message: "پیام ها با موفقیت دریافت شدند.", messages: ticket.messages },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { message: "خطا در دریافت پیام های تیکت!" },
+      { status: 500 }
+    );
+  }
+};
 export const POST = async (req, { params }) => {
   try {
     const { ticketId } = params;

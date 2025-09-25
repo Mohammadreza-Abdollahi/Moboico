@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 export const registerAction = async (prevState, formData) => {
   const username = formData.get("username");
   const email = formData.get("email");
+  const phone = formData.get("phone");
   const password = formData.get("password");
   try {
     const res = await fetch(`${process.env.SITE_URL}/api/auth/register`, {
@@ -12,7 +13,7 @@ export const registerAction = async (prevState, formData) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ username, email, phone, password }),
       cache: "no-store",
     });
     const result = await res.json();

@@ -8,9 +8,8 @@ export const GET = async (req, { params }) => {
     await connectToDatabase();
 
     const { addressId } = params;
-    const decoded = getUserFromCookie();
-    console.log("Decoded:::::::::" + JSON.stringify(decoded) );
 
+    const decoded = getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری شوید!" },

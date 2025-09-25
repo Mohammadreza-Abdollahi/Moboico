@@ -6,8 +6,8 @@ import { v4 as uuid } from "uuid";
 
 export const POST = async (req) => {
   try {
-    const { username, email, password } = await req.json();
-    if (!username || !email || !password) {
+    const { username, email, phone, password } = await req.json();
+    if (!username || !email || !phone || !password) {
       return NextResponse.json(
         { error: "وارد کردن همه فیلد ها الزامی است!" },
         { status: 400 }
@@ -26,6 +26,7 @@ export const POST = async (req) => {
       id: uuid(),
       username,
       email,
+      phone,
       password: hashedPassword,
     });
 
@@ -33,6 +34,7 @@ export const POST = async (req) => {
       id: newUser.id,
       username: newUser.username,
       email: newUser.email,
+      phone: newUser.phone,
       role: newUser.role,
     };
     return NextResponse.json({

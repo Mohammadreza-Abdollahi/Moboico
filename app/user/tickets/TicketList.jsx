@@ -21,7 +21,6 @@ const handleGetTickets = async () => {
 
 const TicketList = () => {
   const [tickets, setTickets] = useState([]);
-  const [faStatus, setFaStatus] = useState("جدید");
   const getFaStatus = (status) => {
     switch (status) {
       case "new":
@@ -44,6 +43,22 @@ const TicketList = () => {
         break;
     }
   };
+  const getFaPriority = (priority) => {
+    switch (priority) {
+      case "low":
+        return "کم";
+        break;
+      case "medium":
+        return "متوسط";
+        break;
+      case "high":
+        return "مهم";
+        break;
+      default:
+        return "متوسط";
+        break;
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,19 +73,20 @@ const TicketList = () => {
   }, []);
   return (
     <>
-      <section>
-        {tickets.length === 0 && (
+      <section className="overflow-x-auto">
+        {(tickets?.length === 0 || !tickets) && (
           <h1 className="text-center bg-red-100 text-red-900 py-3 rounded">
             شما هیج تیکتی باز نکردید!
           </h1>
         )}
-        {tickets.length > 0 && (
-          <table className="w-full">
+        {tickets?.length > 0 && (
+          <table className="min-w-[600px] md:w-full">
             <thead className="text-center">
               <tr className="border-b-2 border-pal1-500 pb-5">
                 <th className="w-1/12 pb-4">#</th>
-                <th className="w-5/12 pb-4">موضوع</th>
+                <th className="w-4/12 pb-4">موضوع</th>
                 <th className="w-2/12 pb-4">وضعیت</th>
+                <th className="w-1/12 pb-4">سطح اهمیت</th>
                 <th className="w-3/12 pb-4">تاریخ</th>
                 <th className="w-1/12 pb-4">عملیات</th>
               </tr>
@@ -102,11 +118,27 @@ const TicketList = () => {
                   >
                     {getFaStatus(item.status)}
                   </td>
+                  <td
+                    className={`py-1 ${
+                      item.priority === "low"
+                        ? "bg-green-500 text-white"
+                        : item.priority === "medium"
+                        ? "bg-yellow-500 text-white"
+                        : item.priority === "high"
+                        ? "bg-red-500 text-white"
+                        : null
+                    }`}
+                  >
+                    {getFaPriority(item.priority)}
+                  </td>
                   <td className="text-slate-600">
                     {convertToPersianDate(item.createdAt, "jDD  jMMMM  jYYYY")}
                   </td>
                   <td>
-                    <Link href={`/user/tickets/${item._id}`} className="px-2 py-1">
+                    <Link
+                      href={`/user/tickets/${item._id}`}
+                      className="px-2 py-1"
+                    >
                       <FontAwesomeIcon
                         icon={faEye}
                         className="text-2xl text-blue-500"
