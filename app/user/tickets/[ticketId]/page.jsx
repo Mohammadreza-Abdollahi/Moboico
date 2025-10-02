@@ -1,7 +1,9 @@
 "use client";
 
+import { useUserData } from "@/context/userDataContext";
 import { convertToPersianDate } from "@/utilities/convertToPersianDate";
 import {
+  faCheckDouble,
   faClock,
   faPaperPlane,
   faRobot,
@@ -13,13 +15,18 @@ import { useParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 
 const TicketPage = () => {
+  const { userData } = useUserData();
+  console.log(userData);
+  const role = userData?.role;
   const params = useParams();
   const [ticket, setTicket] = useState();
+  const [ticketStatus, setTicketStatus] = useState(ticket?.status);
+  const [statusChanged, setStatusChanged] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef(null);
 
-  const messageFormat = /^[A-Za-z0-9\u0600-\u06FF:،]+$/;
+  const messageFormat = /^[^$\^"'\`*/]+$/;
 
   const getFaRole = (role) => {
     switch (role) {
@@ -95,7 +102,7 @@ const TicketPage = () => {
         setMessages((prev) => [
           ...prev,
           {
-            sender: "user",
+            sender: role,
             createdAt: new Date(),
             message: msg,
           },
@@ -104,11 +111,26 @@ const TicketPage = () => {
       console.log(await res.json());
     }
   };
-
+  const updateTicketStatus = async () => {
+    const res = await fetch(`/api/tickets/${params.ticketId}/status`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: ticketStatus }),
+      credentials: "include",
+    });
+    if(res.status === 200){
+      setStatusChanged(true)
+    }
+    const data = await res.json();
+    console.log(data);
+  };
   useEffect(() => {
     const handleGetTicket = async () => {
       const data = await getTicket();
       setTicket(data.ticket);
+      setTicketStatus(data.ticket.status);
       setMessages(data.ticket.messages);
     };
     handleGetTicket();
@@ -116,7 +138,7 @@ const TicketPage = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
+  console.log(ticket?.status);
   return (
     <section className="h-screen flex justify-center items-center">
       <section className="relative flex flex-col md:h-5/6 md:w-2/3 w-full h-full mx-auto rounded-2xl border-2 border-pal1-400 overflow-hidden">
@@ -190,15 +212,68 @@ const TicketPage = () => {
             type="text"
             placeholder="پیام خود را بنویسید..."
           />
-          <button
-            onClick={() => sendMessage(newMessage)}
-            className="text-center align-middle bg-pal4-700 hover:bg-pal4-800 w-14 h-12 flex justify-center items-center cursor-pointer"
-          >
-            <FontAwesomeIcon
-              icon={faPaperPlane}
-              className="text-2xl text-white"
-            />
-          </button>
+          <div className="flex flex-row-reverse">
+            <button
+              onClick={() => sendMessage(newMessage)}
+              className="text-center align-middle bg-pal4-700 hover:bg-pal4-800 w-14 h-12 flex justify-center items-center cursor-pointer"
+            >
+              <FontAwesomeIcon
+                icon={faPaperPlane}
+                className="text-2xl text-white"
+              />
+            </button>
+            <button
+              onClick={updateTicketStatus}
+              className={`${statusChanged ? "bg-green-500 hover:bg-green-600" : "bg-pal2-500 hover:bg-pal2-600"} text-center align-middle w-14 h-12 flex justify-center items-center cursor-pointer ${
+                role === "admin" || role === "creator" ? "visible" : "invisible"
+              }`}
+            >
+              <FontAwesomeIcon
+                icon={faCheckDouble}
+                className="text-2xl text-white"
+              />
+            </button>
+            <section
+              className={`relative ${
+                role === "admin" || role === "creator" ? "visible" : "invisible"
+              }`}
+            >
+              <select
+                onChange={(e) => setTicketStatus(e.target.value)}
+                value={ticketStatus}
+                name="province"
+                id="province"
+                className="w-40 text-slate-800 py-2.5 px-2 border-r-2 border-pal1-400 h-full outline-none transition-all duration-150"
+              >
+                <option className="bg-blue-500/20 text-blue-500" value="new">
+                  جدید
+                </option>
+                <option className="bg-green-500/20 text-green-500" value="open">
+                  باز
+                </option>
+                <option
+                  className="bg-yellow-500/20 text-yellow-500"
+                  value="pending"
+                >
+                  در انتظار
+                </option>
+                <option
+                  className="bg-green-800/20 text-green-800"
+                  value="resolved"
+                >
+                  پاسخ داده شده
+                </option>
+                <option className="bg-red-500/20 text-red-500" value="closed">
+                  بسته شده
+                </option>
+                {/* {provinces.map((item, index) => (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
+                ))} */}
+              </select>
+            </section>
+          </div>
         </div>
       </section>
     </section>
