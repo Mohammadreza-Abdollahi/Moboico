@@ -61,6 +61,7 @@ export const POST = async (req) => {
         {
           sender: userRole || "user",
           message: message || "سلام",
+          senderId: userId,
         },
       ],
       priority: priority || "medium",

@@ -52,7 +52,7 @@ export const POST = async (req, { params }) => {
         { status: 401 }
       );
     }
-    const { role } = decoded;
+    const { role, id } = decoded;
 
     const body = await req.json();
     const { message } = body;
@@ -67,13 +67,14 @@ export const POST = async (req, { params }) => {
     if (!ticket) {
       return NextResponse.json({ message: "تیکت یافت نشد!" }, { status: 404 });
     }
-
     ticket.messages.push({
       sender: ["user", "admin", "creator"].includes(role) ? role : "user",
       message,
+      senderId: id,
     });
-
-    if (ticket.status === "resolved" || ticket.status === "closed") {
+    if (ticket.status === "new" && role !== "user") {
+      ticket.status = "open";
+    } else if (ticket.status === "resolved" || ticket.status === "closed") {
       ticket.status = "open";
     } else if (ticket.status === "pending") {
       ticket.status = "open";
