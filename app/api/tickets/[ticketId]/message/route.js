@@ -1,6 +1,7 @@
 import { getUserFromCookie } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import Ticket from "@/models/Ticket";
+import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, { params }) => {
@@ -70,7 +71,7 @@ export const POST = async (req, { params }) => {
     ticket.messages.push({
       sender: ["user", "admin", "creator"].includes(role) ? role : "user",
       message,
-      senderId: id,
+      senderId: new mongoose.Types.ObjectId(id),
     });
     if (ticket.status === "new" && role !== "user") {
       ticket.status = "open";

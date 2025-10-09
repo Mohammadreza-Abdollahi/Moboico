@@ -25,7 +25,8 @@ const TicketSchema = new mongoose.Schema({
         trim: true,
       },
       senderId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true,
       },
       createdAt: {
