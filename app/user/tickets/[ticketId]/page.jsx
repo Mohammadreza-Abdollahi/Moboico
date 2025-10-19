@@ -112,7 +112,7 @@ const TicketPage = () => {
     }
   };
   const updateTicketStatus = async () => {
-    const res = await fetch(`/api/tickets/${params.ticketId}/status`, {
+    const res = await fetch(`/api/admin/tickets/${params.ticketId}/status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

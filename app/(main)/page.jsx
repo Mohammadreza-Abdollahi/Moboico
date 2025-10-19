@@ -12,7 +12,7 @@ const getArticles = async () => {
   return res.json();
 };
 const getProducts = async () => {
-  const res = await fetch(`${process.env.SITE_URL}/api/products`,{next: {revalidate: 0}});
+  const res = await fetch(`${process.env.SITE_URL}/api/products/latest`,{next: {revalidate: 0}});
   return res.json();
 };
 export default async function Home() {

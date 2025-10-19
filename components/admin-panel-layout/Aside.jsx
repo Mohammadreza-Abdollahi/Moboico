@@ -3,6 +3,7 @@ import AdminProfile from "@/app/admin/Profile";
 import { useMobileAside } from "@/context/mobileUserAsideContext";
 import {
   faBoxesStacked,
+  faClipboardCheck,
   faEnvelope,
   faGaugeHigh,
   faNewspaper,
@@ -17,7 +18,8 @@ const adminMenu = [
   { id: 1, title: "داشبورد", path: "/admin", icon: faGaugeHigh },
   { id: 2, title: "کاربران", path: "/admin/users", icon: faUser },
   { id: 3, title: "محصولات", path: "/admin/products", icon: faBoxesStacked },
-  { id: 4, title: "مقالات", path: "/admin/articles", icon: faNewspaper },
+  { id: 4, title: "سفارشات", path: "/admin/orders", icon: faClipboardCheck },
+  { id: 5, title: "مقالات", path: "/admin/articles", icon: faNewspaper },
   { id: 6, title: "تیکت ها", path: "/admin/tickets", icon: faEnvelope },
 ];
 const AdminPanelAside = () => {
