@@ -39,12 +39,12 @@ const ShopPage = async () => {
                 <ProductItem
                   key={item.id}
                   id={item._id}
-                  img={item.img}
+                  img={item.img[0]}
                   alt={item.alt}
                   title={item.title}
                   price={item.price}
                   discount={item.discount}
-                  count={item.count}
+                  stock={item.stock}
                   isFavourite={false}
                 />
               ))

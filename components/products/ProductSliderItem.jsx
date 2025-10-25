@@ -22,7 +22,7 @@ const ProductSliderItem = ({
           }`}
         >
           <Image
-            src={img}
+            src={`${img}`}
             alt={alt}
             width={380}
             height={420}

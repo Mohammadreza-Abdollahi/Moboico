@@ -33,14 +33,20 @@ const LastFavorite = () => {
           <div className="flex-2/6">
             <Image
               className="w-34"
-              src={lastFavorite?.img || "/structuralImages/default-img.jpg"}
-              alt={lastFavorite?.alt_Img || "Alt_Image"}    
+              src={
+                lastFavorite?.img
+                  ? `${lastFavorite?.img}`
+                  : "/structuralImages/default-img.jpg"
+              }
+              alt={lastFavorite?.alt_Img || "Alt_Image"}
               width={240}
               height={220}
             />
           </div>
           <div className="flex-4/6">
-            <Link className="hover:text-pal1-600" href={`/products/${5454}`}>{lastFavorite?.title}</Link>
+            <Link className="hover:text-pal1-600" href={`/products/${5454}`}>
+              {lastFavorite?.title}
+            </Link>
           </div>
         </section>
         {!userData?.favorites?.length > 0 && (

@@ -133,3 +133,11 @@
   height: 60px;
   border-radius: 50%;
 }
+/* Tiptap Editor */
+.tiptap-editor .ProseMirror{
+  min-height: 200px;
+}
+.tiptap-editor .ProseMirror:focus{
+  outline: none;
+}
+
