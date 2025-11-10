@@ -31,7 +31,7 @@ const ProductsSlider = ({products = []}) => {
         modules={[Navigation , Autoplay]}
         className="products-slider"
       >
-        {products.map((item) => (
+        {products?.map((item) => (
           <SwiperSlide className="text-center">
             <ProductSliderItem
               id={item.id}

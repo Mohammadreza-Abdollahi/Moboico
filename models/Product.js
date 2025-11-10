@@ -12,7 +12,7 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "وارد کردن توضیحات محصول الزامی است."],
     },
     price: {
-      type: Number,   
+      type: Number,
       required: [true, "وارد کردن قیمت محصول الزامی است."],
     },
     discount: {
@@ -24,7 +24,8 @@ const ProductSchema = new mongoose.Schema(
       default: 0,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
       required: [true, "وارد کردن دسته بندی محصول الزامی است."],
     },
     brand: {
