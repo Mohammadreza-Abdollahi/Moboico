@@ -28,6 +28,21 @@ const AddProductPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [des, setDes] = useState("");
   const [categories, setCategories] = useState([]);
+  const [tagsInp, setTagsInp] = useState("");
+  const [tags, setTags] = useState(["تگ شماره یک"]);
+  const AddToTags = (tagName = "") => {
+    const editedName = tagName.trim();
+    if (editedName === "") {
+      return;
+    } else {
+      const newTags = [...tags, tagName];
+      setTags(newTags);
+      setTagsInp("");
+    }
+  };
+  const removeFromTags = (index) => {
+    setTags(tags.filter((item, i) => i !== index));
+  };
   useEffect(() => {
     const handleGetCategories = async () => {
       const data = await getCategories();
@@ -107,19 +122,30 @@ const AddProductPage = () => {
                   name={"tags"}
                   id={"tags"}
                   placeholder={"لطفا تگ های محصول خود را وارد کنید..."}
+                  onChange={(e) => setTagsInp(e.target.value)}
+                  value={tagsInp}
                 />
-                <button className="flex-1/5 w-full text-white py-2.5 px-2 border-2 bg-pal1-400 hover:bg-pal4-600 hover:border-pal4-600 border-pal1-400 focus:border-pal4-600 cursor-pointer rounded-l outline-none transition-all duration-150">
+                <button
+                  onClick={() => AddToTags(tagsInp)}
+                  className="flex-1/5 w-full text-white py-2.5 px-2 border-2 bg-pal1-400 hover:bg-pal4-600 hover:border-pal4-600 border-pal1-400 focus:border-pal4-600 cursor-pointer rounded-l outline-none transition-all duration-150"
+                >
                   افزودن تگ
                 </button>
               </div>
               <div className="w-full">
-                <div className="inline-block my-2 px-3 py-1.5 bg-pal1 rounded-full">
-                  <FontAwesomeIcon
-                    icon={faXmark}
-                    className="text-red-500 text-base me-2.5 inline-block align-middle cursor-pointer"
-                  />
-                  <span className="inline-block">نام تگ</span>
-                </div>
+                {tags.map((item, index) => (
+                  <div
+                    key={index}
+                    className="inline-block my-2 mx-1 px-3 py-1.5 bg-pal1 rounded-full"
+                  >
+                    <FontAwesomeIcon
+                      onClick={() => removeFromTags(index)}
+                      icon={faXmark}
+                      className="text-red-500 text-base me-2.5 inline-block align-middle cursor-pointer"
+                    />
+                    <span className="inline-block">{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -164,6 +190,7 @@ const AddProductPage = () => {
         <div>
           <Tiptap value={des} onChange={setDes} />
         </div>
+        <button className="w-full py-2.5 my-3 text-white bg-pal1-400 hover:bg-pal4-700 rounded transition-all duration-150">افزودن</button>
       </section>
     </>
   );
