@@ -2,7 +2,7 @@ import Loading from "@/components/loading";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductItem from "./ProductItem";
-
+export const dynamic = "force-dynamic";
 const getProducts = async () => {
   const res = await fetch(` ${process.env.SITE_URL}/api/products`, {
     next: { revalidate: 600 },
