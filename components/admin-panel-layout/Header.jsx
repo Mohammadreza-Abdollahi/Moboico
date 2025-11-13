@@ -54,7 +54,7 @@ const AdminPanelHeader = () => {
   }, [path]);
   return (
     <>
-      <header className="fixed top-0 md:right-1/12 z-0 mr-auto w-full md:w-11/12 px-5 py-5 bg-back-gray border-b-2 border-pal1-400 shadow-xl">
+      <header className="fixed top-0 md:right-1/12 z-3 mr-auto w-full md:w-11/12 px-5 py-5 bg-back-gray border-b-2 border-pal1-400 shadow-xl">
         <div className="flex justify-between items-center">
           <section className="md:hidden">
             <button onClick={toggleMenu}>

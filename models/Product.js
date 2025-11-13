@@ -41,6 +41,13 @@ const ProductSchema = new mongoose.Schema(
         type: String,
       },
     ],
+    features: [
+      {
+        name: { type: String, required: true },
+        value: { type: String, required: true },
+        unit: { type: String, default: "" },
+      },
+    ],
     isActive: {
       type: Boolean,
       default: true,
