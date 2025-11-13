@@ -23,9 +23,9 @@ const getProducts = async () => {
   return res.json();
 };
 export default async function Home() {
-  const slides = await getSlides();
-  const articles = await getArticles();
-  const products = await getProducts();
+  const slides = await getSlides([]);
+  const articles = await getArticles([]);
+  const products = await getProducts([]);
   return (
     <div>
       <LandingHeadSlider slides={slides} />

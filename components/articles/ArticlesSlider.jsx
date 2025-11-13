@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductSliderItem from "./ArticleSliderItem";
-const ArticlesSlider = ({articles = []}) => {
+const ArticlesSlider = ({ articles = [] }) => {
   return (
     <>
       <Swiper
@@ -10,7 +10,7 @@ const ArticlesSlider = ({articles = []}) => {
         slidesPerView={1}
         spaceBetween={12}
         autoplay={{
-            delay: 10000,
+          delay: 10000,
         }}
         breakpoints={{
           640: {
