@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductItem from "./ProductItem";
 export const dynamic = "force-dynamic";
 const getProducts = async () => {
-  const res = await fetch(` ${process.env.SITE_URL}/api/products`, {
+  const res = await fetch(` ${process.env.NEXT_PUBLIC_SITE_URL}/api/products`, {
     next: { revalidate: 600 },
   });
   return res.json();

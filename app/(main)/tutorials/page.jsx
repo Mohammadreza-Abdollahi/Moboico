@@ -4,7 +4,7 @@ import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const dynamic = "force-dynamic";
 const getTutorials = async () => {
-  const res = await fetch(`${process.env.SITE_URL}/api/tutorials`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/tutorials`, {
     next: { revalidate: 600 },
   });
   return res.json();

@@ -15,7 +15,7 @@ export const sendCooperate = async (prevState, formData) => {
     explanation,
   };
   try {
-    const res = await fetch(`${process.env.SITE_URL}/api/cooperates`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/cooperates`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,7 +8,7 @@ export const registerAction = async (prevState, formData) => {
   const phone = formData.get("phone");
   const password = formData.get("password");
   try {
-    const res = await fetch(`${process.env.SITE_URL}/api/auth/register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

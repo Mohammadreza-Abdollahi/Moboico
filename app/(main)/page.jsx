@@ -5,19 +5,19 @@ import Products from "@/components/products/Products";
 import LandingHeadSlider from "@/components/sliders/LandingHeadSlider";
 export const dynamic = "force-dynamic";
 const getSlides = async () => {
-  const res = await fetch(`${process.env.SITE_URL}/api/slides`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/slides`, {
     next: { revalidate: 86400 },
   });
   return res.json();
 };
 const getArticles = async () => {
-  const res = await fetch(`${process.env.SITE_URL}/api/articles`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`, {
     next: { revalidate: 0 },
   });
   return res.json();
 };
 const getProducts = async () => {
-  const res = await fetch(`${process.env.SITE_URL}/api/products/latest`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/products/latest`, {
     next: { revalidate: 0 },
   });
   return res.json();

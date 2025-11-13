@@ -4,7 +4,7 @@ import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const dynamic = "force-dynamic";
 const getArticles = async () => {
-  const res = await fetch(`${process.env.SITE_URL}/api/articles`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
   return res.json();
 };
 const BlogPage = async () => {
