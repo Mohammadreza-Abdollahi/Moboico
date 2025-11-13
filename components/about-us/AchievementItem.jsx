@@ -9,7 +9,7 @@ const AchievementItem = ({
   timeDuration = 300,
   timeDelay = 0,
   title = "تعریف نشده",
-  sign = ""
+  sign = "",
 }) => {
   return (
     <>
