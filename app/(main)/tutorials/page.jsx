@@ -2,6 +2,7 @@ import Loading from "@/components/loading";
 import TutorialItem from "@/components/tutorials/TutorialItem";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+export const dynamic = "force-dynamic";
 const getTutorials = async () => {
   const res = await fetch(`${process.env.SITE_URL}/api/tutorials`, {
     next: { revalidate: 600 },

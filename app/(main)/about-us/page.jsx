@@ -1,7 +1,7 @@
 import Achievements from "@/components/about-us/Achievements";
 import AboutUs from "@/components/about-us/AboutUs";
 import CooperateForm from "./CooperateForm";
-
+export const dynamic = "force-dynamic";
 const AboutUsPage = () => {
   return (
     <>

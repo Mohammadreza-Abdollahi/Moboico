@@ -2,6 +2,7 @@ import ArticleItem from "@/components/articles/ArticleItem";
 import Loading from "@/components/loading";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+export const dynamic = "force-dynamic";
 const getArticles = async () => {
   const res = await fetch(`${process.env.SITE_URL}/api/articles`);
   return res.json();
