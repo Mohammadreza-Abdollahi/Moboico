@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AnimatedNumbers from "./animatedNumbers";
 import { faGem } from "@fortawesome/free-regular-svg-icons";
+import AnimatedNumbers from "./AnimatedNumbers";
 
 const AchievementItem = ({
   icon = faGem,
