@@ -17,15 +17,21 @@ const getArticles = async () => {
   return res.json();
 };
 const getProducts = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/products/latest`, {
-    next: { revalidate: 0 },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/latest`,
+    {
+      next: { revalidate: 0 },
+    }
+  );
   return res.json();
 };
 export default async function Home() {
   const slides = await getSlides([]);
   const articles = await getArticles([]);
   const products = await getProducts([]);
+  console.log("SLIDES FROM SERVER:", slides);
+  console.log("ARTICLES FROM SERVER:", articles);
+  console.log("PRODUCTS FROM SERVER:", products);
   return (
     <div>
       <LandingHeadSlider slides={slides} />
