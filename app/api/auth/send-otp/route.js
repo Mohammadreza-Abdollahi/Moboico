@@ -32,6 +32,8 @@ export async function POST(req) {
       }
     );
     const otpResult = await res.json();
+    console.log("OTP RESPONSE STATUS:", res.status);
+    console.log("OTP RESPONSE BODY:", otpResult);
     if (res.ok) {
       console.log("CODE:::::::::::::::" + otpResult.code);
       await redis.set(`otp:${to}`, otpResult.code, {

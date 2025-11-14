@@ -21,14 +21,24 @@ const getCategories = async () => {
   const data = await res.json();
   return data;
 };
+const addProduct = async (product) => {
+  const res = await fetch("/api/admin/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: product,
+  });
+  return await res.json();
+};
 const AddProductPage = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("سلام");
   const [category, setCategory] = useState("");
-  const [price, setPrice] = useState("");
-  const [stock, setStock] = useState("");
-  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState(100);
+  const [stock, setStock] = useState(100);
+  const [brand, setBrand] = useState("سلام");
   const [isActive, setIsActive] = useState(false);
-  const [des, setDes] = useState("");
+  const [des, setDes] = useState("سلام");
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState(["تگ شماره یک"]);
   const [properties, setProperties] = useState([
@@ -38,7 +48,23 @@ const AddProductPage = () => {
       unit: "سانتی متر",
     },
   ]);
-
+  const [product, setProduct] = useState({});
+  const handleAddProduct = async () => {
+    setProduct({
+      title,
+      category,
+      price,
+      stock,
+      brand,
+      isActive,
+      des,
+      categories,
+      tags,
+      properties,
+    });
+    const data = await addProduct(product);
+    console.log(data);
+  };
   useEffect(() => {
     const handleGetCategories = async () => {
       const data = await getCategories();
@@ -146,7 +172,10 @@ const AddProductPage = () => {
         <div>
           <Tiptap value={des} onChange={setDes} />
         </div>
-        <button className="w-full py-2.5 my-3 text-white bg-pal1-400 hover:bg-pal4-700 rounded transition-all duration-150">
+        <button
+          onClick={handleAddProduct}
+          className="w-full py-2.5 my-3 text-white bg-pal1-400 hover:bg-pal4-700 rounded transition-all duration-150"
+        >
           افزودن
         </button>
       </section>

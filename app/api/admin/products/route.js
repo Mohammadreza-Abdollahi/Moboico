@@ -32,3 +32,57 @@ export const GET = async () => {
     );
   }
 };
+export const POST = async (req) => {
+  try {
+    await connectToDatabase();
+    const decoded = getUserFromCookie();
+    if (!decoded) {
+      return NextResponse.json(
+        { message: "ابتدا وارد حساب کاربری خود شوید!" },
+        { status: 401 }
+      );
+    }
+    if (decoded.role !== "creator" && decoded.role !== "admin") {
+      return NextResponse.json(
+        { message: "شما دسترسی لازم برای دریافت این اطلاعات را ندارید!" },
+        { status: 403 }
+      );
+    }
+    const body = await req.json();
+    const {
+      name,
+      description,
+      price,
+      discount,
+      stock,
+      category,
+      brand,
+      tags,
+      img,
+      features,
+      isActive,
+    } = body;
+    const product = await Product.create({
+      name,
+      description,
+      price,
+      discount,
+      stock,
+      category,
+      brand,
+      tags,
+      img,
+      features,
+      isActive,
+    });
+    return NextResponse.json(
+      { message: "محصول  جدید اضافه شد!", product },
+      { status: 201 }
+    );
+  } catch (err) {
+    return NextResponse.json(
+      { error: "در افزودن محصول مشکلی رخ داده است..." },
+      { status: 500 }
+    );
+  }
+};
