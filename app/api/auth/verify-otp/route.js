@@ -3,30 +3,43 @@ import { SignJWT } from "jose";
 import User from "@/models/User";
 import { connectToDatabase } from "@/lib/mongodb";
 import { redis } from "@/lib/redis";
+import Otp from "@/models/Otp";
 
 export const POST = async (req) => {
   try {
     await connectToDatabase();
-    const { phone, userOtp } = await req.json();
+    const { mobile, code } = await req.json();
+    const otp = await Otp.findOne({ mobile });
 
-    if (!phone) {
-      return Response.json({ message: "کد وجود ندارد!" }, { status: 404 });
-    }
-    const storedOtp = await redis.get(`otp:${phone}`);
-    if (userOtp != storedOtp) {
-      console.log("Stoooored"+storedOtp);
-      console.log("UserOtppppp"+userOtp);
-      return NextResponse.json(
-        {
-          message: "کد نادرست است!",
-        },
+    if (!otp) {
+      return Response.json(
+        { error: "کد منقضی شده یا وجود ندارد" },
         { status: 400 }
       );
     }
-    const user = await User.findOne({ phone });
-    if (!user) {
-      return NextResponse.json({ message: "کاربر یافت نشد!" }, { status: 404 });
+
+    if (otp.attempts >= 5) {
+      await Otp.deleteOne({ mobile });
+      return Response.json(
+        { error: "تعداد تلاش بیش از حد مجاز" },
+        { status: 429 }
+      );
     }
+
+    if (otp.expiresAt < new Date()) {
+      await Otp.deleteOne({ mobile });
+      return Response.json({ error: "کد منقضی شده" }, { status: 400 });
+    }
+
+    if (otp.code !== code) {
+      await Otp.updateOne({ mobile }, { $inc: { attempts: 1 } });
+      return Response.json(
+        { error: "کد وارد شده اشتباه است" },
+        { status: 400 }
+      );
+    }
+    await Otp.deleteOne({ mobile });
+    const user = await User.findOne({ mobile });
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
     const token = await new SignJWT({
       id: user._id.toString(),
@@ -38,7 +51,6 @@ export const POST = async (req) => {
       .setIssuedAt()
       .setExpirationTime("3d")
       .sign(secret);
-
     const response = NextResponse.json({
       message: "ورود موفقیت‌آمیز بود",
       data: {
@@ -58,6 +70,7 @@ export const POST = async (req) => {
     });
     return response;
   } catch (err) {
+    console.log(err);
     return NextResponse.json({ error: err }, { status: 500 });
   }
 };

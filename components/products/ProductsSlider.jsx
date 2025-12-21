@@ -3,7 +3,15 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductSliderItem from "./ProductSliderItem";
 
-const ProductsSlider = ({products = []}) => {
+const ProductsSlider = ({ products = [] }) => {
+  console.log(
+    "PRODUCTS =>",
+    products,
+    typeof products,
+    Array.isArray(products)
+  );
+  const safeProducts = Array.isArray(products) ? products : [];
+
   return (
     <>
       <Swiper
@@ -12,7 +20,7 @@ const ProductsSlider = ({products = []}) => {
         slidesPerView={1}
         spaceBetween={10}
         autoplay={{
-            delay: 3000,
+          delay: 3000,
         }}
         breakpoints={{
           640: {
@@ -28,10 +36,10 @@ const ProductsSlider = ({products = []}) => {
             spaceBetween: 35,
           },
         }}
-        modules={[Navigation , Autoplay]}
+        modules={[Navigation, Autoplay]}
         className="products-slider"
       >
-        {products?.map((item) => (
+        {safeProducts?.map((item) => (
           <SwiperSlide className="text-center">
             <ProductSliderItem
               id={item.id}

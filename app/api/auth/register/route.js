@@ -6,27 +6,32 @@ import { v4 as uuid } from "uuid";
 
 export const POST = async (req) => {
   try {
-    const { username, email, phone, password } = await req.json();
-    if (!username || !email || !phone || !password) {
+    const { username, email, mobile, password } = await req.json();
+
+    if (!username || !email || !mobile || !password) {
       return NextResponse.json(
         { error: "وارد کردن همه فیلد ها الزامی است!" },
         { status: 400 }
       );
     }
+
     await connectToDatabase();
-    const existingUser = await User.findOne({ email });
+
+    const existingUser = await User.findOne({ mobile });
     if (existingUser) {
       return NextResponse.json(
-        { error: "این ایمیل قبلا ثبت شد است!" },
+        { error: "این ایمیل قبلا ثبت شده است!" },
         { status: 400 }
       );
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = await User.create({
       id: uuid(),
       username,
       email,
-      phone,
+      mobile,
       password: hashedPassword,
     });
 
@@ -34,9 +39,10 @@ export const POST = async (req) => {
       id: newUser.id,
       username: newUser.username,
       email: newUser.email,
-      phone: newUser.phone,
+      mobile: newUser.mobile,
       role: newUser.role,
     };
+
     return NextResponse.json({
       data: safeUserData,
       message: "کاربر با موفقیت ایجاد شد.",
@@ -44,6 +50,6 @@ export const POST = async (req) => {
     });
   } catch (err) {
     console.error("Register API Error:", err);
-    return NextResponse.json({ error: err }, { status: 500 });
+    return NextResponse.json({ error: "خطای سرور" }, { status: 500 });
   }
 };

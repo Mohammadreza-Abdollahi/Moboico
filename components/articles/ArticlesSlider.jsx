@@ -3,6 +3,13 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductSliderItem from "./ArticleSliderItem";
 const ArticlesSlider = ({ articles = [] }) => {
+  console.log(
+    "ARTICLES =>",
+    articles,
+    typeof articles,
+    Array.isArray(articles)
+  );
+  const safeArticles = Array.isArray(articles) ? articles : [];
   return (
     <>
       <Swiper
@@ -29,7 +36,7 @@ const ArticlesSlider = ({ articles = [] }) => {
         modules={[Autoplay]}
         className="articles-slider"
       >
-        {articles.map((item) => (
+        {safeArticles?.map((item) => (
           <SwiperSlide className="text-center">
             <ProductSliderItem
               id={item.id}

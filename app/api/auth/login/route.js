@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
   try {
-    const { phone, password } = await req.json();
+    const { mobile, password } = await req.json();
 
-    if (!phone || !password) {
+    if (!mobile || !password) {
       return NextResponse.json(
         { error: "شماره همراه و رمز عبور الزامی هستند" },
         { status: 400 }
@@ -15,7 +15,8 @@ export const POST = async (req) => {
     }
 
     await connectToDatabase();
-    const user = await User.findOne({ phone });
+
+    const user = await User.findOne({ mobile });
     if (!user) {
       return NextResponse.json({ error: "کاربر یافت نشد" }, { status: 401 });
     }

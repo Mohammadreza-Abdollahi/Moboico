@@ -45,9 +45,9 @@ const UserSchema = new mongoose.Schema(
         "رمزعبور باید حداقل ۸ کاراکتر، شامل حروف، عدد و یکی از کاراکترهای - یا $ یا # باشد",
       ],
     },
-    phone: {
+    mobile: {
       type: String,
-      required: [true, "وارد کردن شماره تلفن الزامی است!"],
+      required: [true, "وارد کردن شماره موبایل الزامی است!"],
       match: [/^09\d{9}$/, "شماره تلفن باید با 09 شروع شده و 11 رقم باشد."],
     },
     addresses: [AddressSchema],
@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema(
       default: "user",
       required: true,
     },
-    phoneIsVerified: {
+    mobileIsVerified: {
       type: Boolean,
       default: false,
     },
