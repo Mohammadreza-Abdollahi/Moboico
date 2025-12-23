@@ -8,7 +8,7 @@ export const PATCH = async (req, { params }) => {
     await connectToDatabase();
     const allowedStatuses = ["new", "open", "pending", "resolved", "closed"];
     const { ticketId } = params;
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری خود شوید!" },

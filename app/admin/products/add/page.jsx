@@ -27,7 +27,7 @@ const addProduct = async (product) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: product,
+    body: JSON.stringify(product),
   });
   return await res.json();
 };
@@ -48,21 +48,20 @@ const AddProductPage = () => {
       unit: "سانتی متر",
     },
   ]);
-  const [product, setProduct] = useState({});
   const handleAddProduct = async () => {
-    setProduct({
-      title,
+    const productData = {
+      name: title,
       category,
-      price,
-      stock,
+      price: Number(price),
+      stock: Number(stock),
       brand,
       isActive,
-      des,
-      categories,
+      description: des,
       tags,
-      properties,
-    });
-    const data = await addProduct(product);
+      features: properties,
+    };
+    console.log(productData);
+    const data = await addProduct(productData);
     console.log(data);
   };
   useEffect(() => {

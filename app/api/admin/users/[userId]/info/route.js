@@ -7,7 +7,7 @@ export const GET = async (req, { params }) => {
   try {
     await connectToDatabase();
     const { userId } = params;
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری خود شوید!" },

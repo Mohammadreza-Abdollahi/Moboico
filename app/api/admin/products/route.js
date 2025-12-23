@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     await connectToDatabase();
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری خود شوید!" },
@@ -35,7 +35,7 @@ export const GET = async () => {
 export const POST = async (req) => {
   try {
     await connectToDatabase();
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری خود شوید!" },
@@ -80,6 +80,7 @@ export const POST = async (req) => {
       { status: 201 }
     );
   } catch (err) {
+    console.log(err);
     return NextResponse.json(
       { error: "در افزودن محصول مشکلی رخ داده است..." },
       { status: 500 }

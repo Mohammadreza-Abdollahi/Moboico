@@ -66,7 +66,7 @@ const AdminProducts = () => {
                 <td className="py-3">
                   <Image
                     className="mx-auto"
-                    src={`${item.img}`}
+                    src={`${item.img.length > 0 ? item.img[0] : "/structuralImages/def.jpg"}`}
                     alt={item.name}
                     width={80}
                     height={80}

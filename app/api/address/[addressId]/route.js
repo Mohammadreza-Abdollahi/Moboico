@@ -9,7 +9,7 @@ export const GET = async (req, { params }) => {
 
     const { addressId } = params;
 
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری شوید!" },
@@ -54,7 +54,7 @@ export const PATCH = async (req, { params }) => {
     } = await req.json();
 
     const { addressId } = params;
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     console.log("decoded >>>", decoded);
     if (!decoded) {
       return NextResponse.json(
@@ -108,7 +108,7 @@ export const DELETE = async (req, { params }) => {
     await connectToDatabase();
 
     const { addressId } = params;
-    const user = getUserFromCookie();
+    const user = await getUserFromCookie();
     const userId = user.id;
 
     if (!user) {

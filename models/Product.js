@@ -36,11 +36,10 @@ const ProductSchema = new mongoose.Schema(
         type: String,
       },
     ],
-    img: [
-      {
-        type: String,
-      },
-    ],
+    img: {
+      type: [String],
+      default: ["/structuralImages/def.jpg"],
+    },
     features: [
       {
         name: { type: String, required: true },

@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export const GET = async (req, { params }) => {
   try {
     await connectToDatabase();
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     const userId = decoded.id;
     if (!decoded) {
       return NextResponse.json(
@@ -46,7 +46,7 @@ export const GET = async (req, { params }) => {
 export const POST = async (req, { params }) => {
   try {
     const { ticketId } = params;
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     if (!decoded) {
       return NextResponse.json(
         { message: "ابتدا وارد حساب کاربری خود شوید!" },

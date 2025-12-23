@@ -12,7 +12,7 @@ export const GET = async () => {
     if (!token) {
       return NextResponse.json({ error: "توکن وجود ندارد!" }, { status: 401 });
     }
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
     await connectToDatabase();
     const user = await User.findById(decoded.id).select("-password");
     if (!user) {
@@ -32,7 +32,7 @@ export const PATCH = async (req) => {
     const { email, phone, username, password } = await req.json();
     const updateData = { email , phone, username };
 
-    const decoded = getUserFromCookie();
+    const decoded = await getUserFromCookie();
 
     await connectToDatabase();
     const user = await User.findById(decoded.id);
