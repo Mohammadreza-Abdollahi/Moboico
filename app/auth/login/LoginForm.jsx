@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { redirect } from "next/navigation";
+import { useCountdown } from "@/hooks/useCountDown";
 
 const sendOtp = async (mobile) => {
   const res = await fetch(`/api/auth/send-otp`, {
@@ -20,6 +21,9 @@ const sendOtp = async (mobile) => {
 };
 
 const LoginForm = () => {
+  const { value, secondsLeft, isActive, start } = useCountdown(180, "minutes");
+  console.log(value);
+  console.log(isActive);
   const [hide, setHide] = useState(true);
   const [success, setSuccess] = useState();
   const [error, setError] = useState("");
@@ -149,18 +153,24 @@ const LoginForm = () => {
               رمز یکبار مصرف
             </label>
             <input
-              className="w-3/4 text-slate-800 text-center tracking-widest py-2.5 px-2 border-2 border-pal1-400 focus:border-pal4-600 rounded outline-none"
+              className="w-3/4 text-slate-800 text-center tracking-widest py-2.5 px-2 border-2 border-pal1-400 focus:border-pal4-600 rounded-r outline-none"
               type="text"
               name="code"
               id="code"
               onChange={(e) => setCode(e.target.value)}
             />
             <button
-              className="w-1/4 py-2.5 bg-pal2-500 hover:bg-pal2-600 border-2 border-pal2-500 rounded-l text-white"
+              className="w-1/4 py-2.5 disabled:bg-pal4-700/70 disabled:border-pal4-700/40 bg-pal4-700 hover:bg-pal4-800 border-2 border-pal4-700 rounded-l text-white"
               type="button"
-              onClick={() => sendOtp(mobile)}
+              onClick={() => {
+                sendOtp(mobile);
+                start();
+              }}
+              disabled={isActive}
             >
-              دریافت رمز
+              {isActive
+                ? `${value?.toString()}`
+                : "دریافت رمز"}
             </button>
           </section>
         </div>

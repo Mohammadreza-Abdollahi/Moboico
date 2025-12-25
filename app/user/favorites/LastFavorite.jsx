@@ -36,7 +36,7 @@ const LastFavorite = () => {
               src={
                 lastFavorite?.img
                   ? `${lastFavorite?.img}`
-                  : "/structuralImages/default-img.jpg"
+                  : "/structuralImages/def.jpg"
               }
               alt={lastFavorite?.alt_Img || "Alt_Image"}
               width={240}

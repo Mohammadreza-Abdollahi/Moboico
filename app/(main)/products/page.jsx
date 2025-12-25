@@ -35,9 +35,9 @@ const ShopPage = async () => {
           </section>
           <section className="flex justify-center items-stretch flex-wrap gap-5 mt-10">
             {products.length !== 0 ? (
-              products.map((item) => (
+              products.map((item , index) => (
                 <ProductItem
-                  key={item.id}
+                  key={index}
                   id={item._id}
                   img={item.img[0]}
                   alt={item.alt}

@@ -157,7 +157,7 @@ const AddProductPage = () => {
                   />
                   <Image
                     className="rounded"
-                    src={"/structuralImages/default-img.jpg"}
+                    src={"/structuralImages/def.jpg"}
                     alt="Image"
                     width={160}
                     height={160}

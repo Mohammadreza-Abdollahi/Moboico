@@ -7,7 +7,26 @@ export async function POST(req) {
     const { to } = await req.json();
 
     if (!to) {
-      return Response.json({ error: "شماره موبایل الزامی است" }, { status: 400 });
+      return Response.json(
+        { error: "شماره موبایل الزامی است" },
+        { status: 400 }
+      );
+    }
+
+    const existingOtp = await Otp.findOne({ mobile: to });
+
+    if (existingOtp && existingOtp.expiresAt > new Date()) {
+      const remainingSeconds = Math.ceil(
+        (existingOtp.expiresAt - Date.now()) / 1000
+      );
+
+      return Response.json(
+        {
+          error: "هر 3 دقیقه یک بار میتوانید کد دریافت کنید!",
+          retryAfter: remainingSeconds,
+        },
+        { status: 429 }
+      );
     }
 
     const res = await fetch(
@@ -22,10 +41,7 @@ export async function POST(req) {
     const result = await res.json();
 
     if (!res.ok || !result.code) {
-      return Response.json(
-        { error: "ارسال کد ناموفق بود" },
-        { status: 500 }
-      );
+      return Response.json({ error: "ارسال کد ناموفق بود" }, { status: 500 });
     }
 
     await Otp.findOneAndUpdate(

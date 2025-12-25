@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const ProductItem = ({
   id = 1,
-  img = "/structuralImages/default-img.jpg",
+  img = "/structuralImages/def.jpg",
   alt = "",
   title = "",
   price = 0,

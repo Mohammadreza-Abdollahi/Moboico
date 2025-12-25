@@ -20,7 +20,7 @@ const TutorialItem = ({
           <div className="h-52">
             <Image
               className="w-full h-full"
-              src={img || "/structuralImages/default-img.jpg"}
+              src={img || "/structuralImages/def.jpg"}
               alt={altImg}
               width={180}
               height={220}
