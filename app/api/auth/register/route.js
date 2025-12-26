@@ -7,7 +7,10 @@ import { v4 as uuid } from "uuid";
 export const POST = async (req) => {
   try {
     const { username, email, mobile, password } = await req.json();
-
+    console.log("username::::::::::" + username);
+    console.log("email::::::::::" + email);
+    console.log("mobile::::::::::" + mobile);
+    console.log("password::::::::::" + password);
     if (!username || !email || !mobile || !password) {
       return NextResponse.json(
         { error: "وارد کردن همه فیلد ها الزامی است!" },

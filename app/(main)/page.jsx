@@ -29,9 +29,6 @@ export default async function Home() {
   const slides = await getSlides([]);
   const articles = await getArticles([]);
   const products = await getProducts([]);
-  console.log("SLIDES FROM SERVER:", slides);
-  console.log("ARTICLES FROM SERVER:", articles);
-  console.log("PRODUCTS FROM SERVER:", products);
   return (
     <div>
       <LandingHeadSlider slides={slides} />

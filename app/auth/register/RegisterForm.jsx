@@ -48,8 +48,8 @@ const RegisterForm = () => {
           <FormControler
             type={"input"}
             formParams={{
-              id: "phone",
-              name: "phone",
+              id: "mobile",
+              name: "mobile",
               label: "شماره همراه",
               placeholder: "شماره همراه خود را وارد کنید...",
             }}

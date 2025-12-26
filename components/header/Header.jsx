@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 const menuItems = [
   { id: 1, title: "خانه", path: "/" },
-  { id: 2, title: "محصولات", path: "/products" },
+  { id: 2, title: "محصولات", path: "/shop" },
   { id: 3, title: "اموزش", path: "/tutorials" },
   { id: 4, title: "وبلاگ", path: "/blog" },
   { id: 5, title: "درباره ما", path: "/about-us" },

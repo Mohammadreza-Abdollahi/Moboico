@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { redirect } from "next/navigation";
-import { useCountdown } from "@/hooks/useCountDown";
+import { useCountdown } from "@/hooks/useCountdown";
 
 const sendOtp = async (mobile) => {
   const res = await fetch(`/api/auth/send-otp`, {
