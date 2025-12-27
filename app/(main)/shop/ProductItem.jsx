@@ -61,7 +61,7 @@ const ProductItem = ({
   return (
     <>
       <section className="relative w-80 group bg-back-gray border border-pal1-400 hover:shadow-lg hover:shadow-pal3-600/30 hover:border hover:border-pal3-600 rounded overflow-hidden transition duration-150">
-        <Link href={`products/${id}`} className="line-clamp-2">
+        <Link href={`shop/${id}`} className="line-clamp-2">
           <div
             className={`relative w-full px-5 py-3 overflow-hidden bg-white ${
               stock === 0 ? "grayscale-100" : ""
@@ -82,7 +82,7 @@ const ProductItem = ({
           </div>
         </Link>
         <div className="h-16 px-2.5 pt-2 pb-4 text-justify group-hover:text-pal4-800 transition-all duration-150">
-          <Link href={`products/${id}`} className="line-clamp-2">
+          <Link href={`shop/${id}`} className="line-clamp-2">
             {title}
           </Link>
         </div>

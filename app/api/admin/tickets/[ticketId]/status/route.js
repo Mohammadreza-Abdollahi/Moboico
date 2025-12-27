@@ -3,7 +3,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Ticket from "@/models/Ticket";
 import { NextResponse } from "next/server";
 
-export const PATCH = async (req, { params }) => {
+export const PATCH = async (req, { s }) => {
   try {
     await connectToDatabase();
     const allowedStatuses = ["new", "open", "pending", "resolved", "closed"];
