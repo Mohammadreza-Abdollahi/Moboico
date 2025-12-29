@@ -28,7 +28,7 @@
   --color-pal4-700: #8242ae;
   --color-pal4-800: #6e3a8f;
   --color-back-gray: #f7f7f8;
-  --color-back-gradient-1: #67B26F;
+  --color-back-gradient-1: #67b26f;
   --color-back-gradient-2: #4ca2cd;
   --color-back-gradient-3: #b3ffab;
   --color-back-gradient-4: #12fff7;
@@ -133,11 +133,72 @@
   height: 60px;
   border-radius: 50%;
 }
-/* Tiptap Editor */
-.tiptap-editor .ProseMirror{
-  min-height: 200px;
-}
-.tiptap-editor .ProseMirror:focus{
-  outline: none;
+/* Product Gallery Slider */
+.swiper {
+  width: 100%;
+  height: 100%;
 }
 
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.product-galley-top {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+  margin-left: 0;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tiptap Editor */
+.tiptap-editor .ProseMirror {
+  min-height: 200px;
+}
+.tiptap-editor .ProseMirror:focus {
+  outline: none;
+}

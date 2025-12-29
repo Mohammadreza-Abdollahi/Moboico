@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Product from "@/models/Product";
 import { NextResponse } from "next/server";
 
-const GET = async (req, { params }) => {
+export const GET = async (req, { params }) => {
   try {
     const { productId } = params;
 
@@ -39,5 +39,3 @@ const GET = async (req, { params }) => {
     );
   }
 };
-
-export default GET;
